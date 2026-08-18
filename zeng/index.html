@@ -596,7 +596,7 @@ img{max-width:100%;display:block}
                   <div class="row-what">Bachelor of Science, Physiology and Pharmacology (double major)</div>
                   <p class="row-where">University of Toronto, Toronto, ON</p>
                   <p class="row-note">Minor in Economics.</p>
-                  <p class="row-note">3.99 cumulative GPA; additional coursework in Python, bioinformatics, and statistics.</p>
+                  <p class="row-note">3.99 cumulative GPA. Completed additional coursework in Python, bioinformatics, and statistics.</p>
                 </div>
               </li>
             </ul>
@@ -744,26 +744,6 @@ img{max-width:100%;display:block}
               </ol>
           </div>
 
-          <div class="sub">
-            <h3 class="sub-title">Manuscripts in preparation</h3>
-              <ol class="cites" style="counter-reset:cite 13">
-              <li>
-                <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Wong VT, Pintwala R. Acute angle-closure glaucoma risk with non-ophthalmic anticholinergics: a sex-stratified pharmacovigilance disproportionality analysis.</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Wong VT, Popovic M, Muni R, Pintwala R. Intraocular hemorrhage risk with antiplatelet agents: a pharmacovigilance analysis.</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p class="cite-text">Qureshi Q, Geyer A, Tan D, Chen S, Feng N, <span class="cite-you">Zeng D</span>, Delaney G, Garden FL, McKenzie P, Yap ML, Chan J. Global patterns in actual radiotherapy utilization for cancer: a systematic review and meta-analysis.</p>
-                </div>
-              </li>
-              </ol>
-          </div>
         </section>
 
         <section class="sec" id="presentations">
@@ -802,7 +782,7 @@ img{max-width:100%;display:block}
                   <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota DR. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program.</p>
                   <ul class="venues">
                     <li><em>Western Medical Research Conference</em>, Carmel, CA, Jan 2025 <span class="tag">15-min oral</span></li>
-                    <li><em>University of British Columbia FLEX Activity Day</em>, Vancouver, BC, Jan 2025 <span class="tag">1-min oral</span></li>
+                    <li><em>UBC FLEX Activity Day</em>, Vancouver, BC, Jan 2025 <span class="tag">1-min oral</span></li>
                   </ul>
                 </div>
               </li>
@@ -811,7 +791,7 @@ img{max-width:100%;display:block}
                   <p class="cite-text">Li K, <span class="cite-you cite-pres">Zeng D</span>, Thapar A, Belayneh M. Managing neuropathic cancer breakthrough pain for patients on methadone: a retrospective cohort study.</p>
                   <ul class="venues">
                     <li><em>Canadian Society of Palliative Medicine</em>, Virtual, Sept 2025 <span class="tag">10-min oral</span></li>
-                    <li><em>University of British Columbia Division of Palliative Care Research Day</em>, Vancouver, BC, Jun 2025 <span class="tag">15-min oral</span></li>
+                    <li><em>UBC Division of Palliative Care Research Day</em>, Vancouver, BC, Jun 2025 <span class="tag">15-min oral</span></li>
                   </ul>
                 </div>
               </li>
@@ -820,7 +800,7 @@ img{max-width:100%;display:block}
                   <p class="cite-text">Sagorin Z, <span class="cite-you cite-pres">Zeng D</span>, Nguyen N, Yorke E, Sampath S. Intracorporeal versus extracorporeal anastomosis for laparoscopic right hemicolectomy: short-term and long-term outcomes.</p>
                   <ul class="venues">
                     <li><em>British Columbia Surgical Society</em>, Victoria, BC, May 2024 <span class="tag">15-min oral</span></li>
-                    <li><em>University of British Columbia Department of Surgery Chung Research Day</em>, Vancouver, BC, Nov 2024 <span class="tag">4-min oral</span></li>
+                    <li><em>UBC Department of Surgery Chung Research Day</em>, Vancouver, BC, Nov 2024 <span class="tag">4-min oral</span></li>
                   </ul>
                 </div>
               </li>
@@ -1095,7 +1075,7 @@ img{max-width:100%;display:block}
 
         <section class="sec" id="outreach">
           <h2 class="sec-title">Leadership &amp; outreach</h2>
-          <p class="sec-note">Everyone deserves the same standard of care, and in practice not everyone receives it. The languages you speak, how recently you immigrated, and how far you live from a hospital all change what happens. Each of these is an attempt to close that gap somewhere small and specific.</p>
+          <p class="sec-note">Everyone deserves the same standard of care, and in practice not everyone receives it. The languages you speak, how recently you immigrated, and how far you live from a hospital all change what happens. Each of these is an attempt to close that gap.</p>
 
           <div class="sub">
             <h3 class="sub-title">Patient advocacy</h3>
@@ -1244,11 +1224,10 @@ img{max-width:100%;display:block}
             <ul class="rows">
               <li class="row">
                 <div class="row-when">Ophthalmology</div>
-                <div><p class="row-note">Association for Research in Vision and Ophthalmology (ARVO)</p></div>
-              </li>
-              <li class="row">
-                <div class="row-when">Ophthalmology</div>
-                <div><p class="row-note">European Society of Cataract &amp; Refractive Surgeons (ESCRS)</p></div>
+                <div>
+                  <p class="row-note">Association for Research in Vision and Ophthalmology (ARVO)</p>
+                  <p class="row-note">European Society of Cataract &amp; Refractive Surgeons (ESCRS)</p>
+                </div>
               </li>
               <li class="row">
                 <div class="row-when">Oncology</div>
@@ -1690,7 +1669,8 @@ img{max-width:100%;display:block}
   });
 
   /* ---------- Dropdowns: any nav item holding a button + menu ---------- */
-  var menus = [], hoverOut = null;
+  var menus = [], hoverOut = null,
+      canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   document.querySelectorAll(".nav-item").forEach(function(item){
     var btn  = item.querySelector("button.nav-link");
     var menu = item.querySelector(".menu");
@@ -1700,9 +1680,16 @@ img{max-width:100%;display:block}
 
     btn.addEventListener("click", function(e){
       e.stopPropagation();
+      /* With a mouse the menu is already open from hover, so a click on the
+         button means "take me to the page". On touch there is no hover, so the
+         first tap has to open the menu or the section links are unreachable. */
+      if (canHover){
+        closeMenus();
+        location.hash = "#" + btn.getAttribute("data-route");
+        return;
+      }
       var wasOpen = menu.hasAttribute("data-open");
       closeMenus();
-      /* Clicking the open button is a second press: go to the page itself. */
       if (wasOpen) location.hash = "#" + btn.getAttribute("data-route");
       else openMenu(m);
     });
