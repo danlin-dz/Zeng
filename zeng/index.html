@@ -247,6 +247,7 @@ img{max-width:100%;display:block}
   transition:border-color .18s ease;word-break:break-all;
 }
 .doi:hover{border-bottom:2px solid var(--fluor)}
+.tag--award{font-weight:700;color:var(--ink);border-color:var(--ink)}
 .tag{
   font-family:var(--body);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
   color:var(--slate);border:1px solid var(--rule);border-radius:2px;padding:.15rem .45rem;
@@ -491,14 +492,46 @@ img{max-width:100%;display:block}
   *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0ms !important;transition-duration:.001ms !important}
   html{scroll-behavior:auto !important}
 }
+/* Printing, and the downloadable PDF, use these rules. Screen spacing runs to
+   18 pages on paper; this brings the same content to 9 without shrinking the
+   type below what a reader can comfortably follow. Keeping the rules here
+   rather than injecting them at build time means printing the live page from
+   a browser gives the identical layout, in the real fonts. */
+@page{size:Letter;margin:18mm 16mm}
 @media print{
   .bar,.rail,.foot,.cv-actions,.embed{display:none !important}
   .page{display:block !important;padding-top:0}
-  body{background:#fff;font-size:11pt}
-  .cv-body{grid-template-columns:1fr}
-  .sec{page-break-inside:auto;padding-bottom:1.5rem}
-  .cites li,.row{page-break-inside:avoid}
+  #page-home,#page-about{display:none !important}
+  body{background:#fff;font-size:10pt;line-height:1.42}
   a{text-decoration:none}
+
+  .wrap{max-width:none;padding-inline:0}
+  .cv-body{grid-template-columns:1fr;padding-block:0}
+  .cv-head{padding-block:0 .6rem}
+  .cv-title{font-size:20pt}
+
+  .sec{page-break-inside:auto;padding-bottom:.9rem}
+  .sec-title{font-size:14pt;padding-bottom:.25rem;margin-bottom:.1rem;page-break-after:avoid}
+  .sec-title + .sub,.sec-title + .sec-note,.sec-title + .rows{margin-top:.55rem}
+  .sub{margin-top:.8rem}
+  .sub:first-of-type{margin-top:.55rem}
+  .sub-title{font-size:8.5pt;padding-bottom:.2rem;page-break-after:avoid}
+  .sec-note,.sub-note{margin:.35rem 0 .5rem;font-size:9pt}
+
+  .cites > li,.row{page-break-inside:avoid}
+  .row{padding:.42rem 0;gap:.2rem 1rem}
+  .row-what{font-size:10.5pt}
+  .row-where,.row-note{font-size:9.2pt}
+  .row-note{margin-top:.18rem}
+  .row-when{font-size:8.6pt;padding-top:.12rem}
+
+  .cites > li{padding:.42rem 0}
+  .cite-text{font-size:9.4pt;max-width:none}
+  .cite-tail{margin-top:.15rem}
+  .venues{margin-top:.2rem}
+  .venues li{font-size:8.9pt;padding:.05rem 0}
+  .tag{font-size:7.4pt;padding:.05rem .3rem}
+  .doi{font-size:8.6pt}
 }
 </style>
 </head>
@@ -610,9 +643,10 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">2017 &ndash; 2021</div>
                 <div>
-                  <div class="row-what">Bachelor of Science, Physiology and Pharmacology (Minor in Economics)</div>
+                  <div class="row-what">Bachelor of Science, Physiology and Pharmacology</div>
                   <p class="row-where">University of Toronto, Toronto, ON</p>
                   <p class="row-note">3.99 cumulative GPA</p>
+                  <p class="row-note">Minor in Economics</p>
                   <p class="row-note">Completed additional coursework in Python, bioinformatics, and statistics</p>
                 </div>
               </li>
@@ -778,7 +812,7 @@ img{max-width:100%;display:block}
                 <div>
                   <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Wong VT, Pintwala R. Acute angle-closure glaucoma and non-ophthalmic anticholinergics: a sex-stratified pharmacovigilance disproportionality analysis.</p>
                   <ul class="venues">
-                    <li><em>European Society of Cataract &amp; Refractive Surgeons (ESCRS) Congress</em>, London, UK, Sept 2026 <span class="tag">5-min oral &middot; ESCRS Bursary Award</span></li>
+                    <li><em>European Society of Cataract &amp; Refractive Surgeons (ESCRS) Congress</em>, London, UK, Sept 2026 <span class="tag">5-min oral</span> <span class="tag tag--award">ESCRS Bursary Award</span></li>
                   </ul>
                 </div>
               </li>
@@ -794,7 +828,7 @@ img{max-width:100%;display:block}
                 <div>
                   <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Bates A, Zhang Y, Cook O, Raman S, Leung B, Ho C, Nunez JJ. Association of social isolation with overall survival in cancer patients.</p>
                   <ul class="venues">
-                    <li><a class="doi" href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.12011" target="_blank" rel="noopener"><em>American Society of Clinical Oncology (ASCO) Annual Meeting</em></a>, Chicago, IL, May 2026 <span class="tag">6-min oral &middot; Conquer Cancer Merit Award</span></li>
+                    <li><a class="doi" href="https://ascopubs.org/doi/10.1200/JCO.2026.44.16_suppl.12011" target="_blank" rel="noopener"><em>American Society of Clinical Oncology (ASCO) Annual Meeting</em></a>, Chicago, IL, May 2026 <span class="tag">6-min oral</span> <span class="tag tag--award">Conquer Cancer Merit Award</span></li>
                   </ul>
                 </div>
               </li>
@@ -892,7 +926,7 @@ img{max-width:100%;display:block}
                 <div>
                   <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Bates A, Zhang Y, Cook O, Raman S, Leung B, Ho C, Nunez JJ. Cumulative social isolation burden and overall survival in patients with cancer: a population-based cohort study.</p>
                   <ul class="venues">
-                    <li><em>American Society of Clinical Oncology (ASCO) Quality Care Symposium</em>, Boston, MA, Oct 2026 <span class="tag">Conquer Cancer Merit Award</span></li>
+                    <li><em>American Society of Clinical Oncology (ASCO) Quality Care Symposium</em>, Boston, MA, Oct 2026 <span class="tag tag--award">Conquer Cancer Merit Award</span></li>
                   </ul>
                 </div>
               </li>
@@ -953,7 +987,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Acute Angle-Closure Glaucoma (ACG) &amp; Non-Ophthalmic Anticholinergics</div>
                   <p class="row-where">Supervisors: Dr. Vincent Tony Wong, Dr. Rob Pintwala</p>
-                  <p class="row-note">Led a sex-stratified disproportionality analysis of ACG reporting in patients on non-ophthalmic anticholinergics; independently learned and applied R to conduct the sensitivity analyses.</p>
+                  <p class="row-note">Leading a sex-stratified disproportionality analysis of ACG reporting in patients on non-ophthalmic anticholinergics; independently learned and applied R to conduct sensitivity analyses</p>
                 </div>
               </li>
               <li class="row">
@@ -961,26 +995,39 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Intraocular Hemorrhage &amp; Antiplatelet Use</div>
                   <p class="row-where">Supervisors: Dr. Vincent Tony Wong, Dr. Rob Pintwala</p>
-                  <p class="row-note">Characterized the association between antiplatelet use and multiple intraocular hemorrhage subtypes.</p>
-                  <p class="row-note">Integrated the findings with existing evidence to clarify clinically relevant ocular bleeding risk.</p>
+                  <p class="row-note">Integrating disproportional signals with existing evidence to draft a manuscript raising awareness of intraocular bleeding risk especially with clopidogrel and aspirin, independent of anticoagulant use</p>
                 </div>
               </li>
               <li class="row">
-                <div class="row-when">Sept 2025 &ndash; Jul 2026</div>
+                <div class="row-when">Sept 2025 &ndash; Aug 2026</div>
                 <div>
                   <div class="row-what">Taxane Chemotherapy-Associated Ocular Adverse Events</div>
                   <p class="row-where">Supervisors: Dr. Rob Pintwala, Dr. Ahmed Al-Ghoul</p>
-                  <p class="row-note">Spearheaded a characterization of taxane-associated ocular adverse events.</p>
-                  <p class="row-note">Identified gaps in the evidence and critically evaluated sources of bias and study limitations in a structured literature review, to support rigorous interpretation of the findings.</p>
+                  <p class="row-note">Calculated odds ratios, chi-square, and Bayesian information criterion for 258 ophthalmic outcomes</p>
+                  <p class="row-note">Critically evaluated gaps in evidence, sources of bias, and study limitations for a structured literature review to support rigorous interpretation of significant FAERS signals</p>
                 </div>
               </li>
               <li class="row">
-                <div class="row-when">May 2026 &ndash; Jul 2026</div>
+                <div class="row-when">Apr 2026 &ndash; Jul 2026</div>
                 <div>
                   <div class="row-what">Ophthalmic Surgical Wait Times</div>
                   <p class="row-where">Supervisor: Dr. Eduardo Navajas</p>
-                  <p class="row-note">Worked with other medical students to calculate regional trends in ophthalmic surgical wait times across British Columbia health authorities, comparing surgical backlog against ophthalmologist supply.</p>
-                  <p class="row-note">Characterized and emphasized the disparities in access experienced by Indigenous communities.</p>
+                  <p class="row-note">Investigated regional trends in ophthalmic surgical wait times across BC, with an emphasis on disparities in access for Indigenous communities</p>
+                  <p class="row-note">Advocated for resource allocation to support more ophthalmic care in Indigenous communities</p>
+                </div>
+              </li>
+              <li class="row">
+                <div class="row-when">Jun 2026 &ndash; present</div>
+                <div>
+                  <div class="row-what">Intraocular Malignancy</div>
+                  <p class="row-note">Collaborating with two medical students to screen 5,561 studies for a systematic review, resolving discrepancies by delegating tasks and communicating our decision-making process clearly</p>
+                </div>
+              </li>
+              <li class="row">
+                <div class="row-when">Aug 2026 &ndash; present</div>
+                <div>
+                  <div class="row-what">Visual Outcomes after Craniopharyngioma Surgery</div>
+                  <p class="row-note">Screening 1,818 studies to determine predictors of visual improvement and deterioration after craniopharyngioma surgery; synthesizing findings for a systematic review</p>
                 </div>
               </li>
             </ul>
@@ -990,12 +1037,20 @@ img{max-width:100%;display:block}
             <h3 class="sub-title">Oncology care</h3>
             <ul class="rows">
               <li class="row">
-                <div class="row-when">Jan 2026 &ndash; Jul 2026</div>
+                <div class="row-when">Sept 2025 &ndash; Jul 2026</div>
                 <div>
                   <div class="row-what">Social Isolation &amp; Cancer Survival</div>
                   <p class="row-where">Supervisor: Dr. John-Jose Nunez</p>
-                  <p class="row-note">A recent cancer diagnosis in my family is what moved me to understand how psychosocial factors shape cancer outcomes.</p>
-                  <p class="row-note">Led the analysis of a population cohort of 45,651 patients; living alone, lacking regular social contact, and elevated depressive or anxiety symptoms each significantly increased mortality risk.</p>
+                  <p class="row-note">Recent cancer diagnosis in my mother motivated me to research the effects of psychosocial factors such as the many dimensions of social isolation on cancer survival</p>
+                  <p class="row-note">Led an analysis of a population cohort of 45,651 patients using Python; found that living alone, no regular social contact, and depressive or anxiety symptoms significantly increase mortality in cancer</p>
+                </div>
+              </li>
+              <li class="row">
+                <div class="row-when">Oct 2025 &ndash; Sept 2026</div>
+                <div>
+                  <div class="row-what">Thymoma Survival &amp; Recurrence</div>
+                  <p class="row-where">Supervisor: Dr. Siavash Atrchian</p>
+                  <p class="row-note">Using competing risks analysis, estimated the long-term survival and recurrence of thymoma in a population-based cohort in BC followed for up to 21 years</p>
                 </div>
               </li>
               <li class="row">
@@ -1003,53 +1058,56 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Global Radiotherapy Utilization</div>
                   <p class="row-where">Supervisor: Dr. Jessica Chan</p>
-                  <p class="row-note">Screened studies for a systematic review comparing evidence-based radiotherapy need against real-world utilization across health systems, to characterize global inequities in access.</p>
+                  <p class="row-note">Screened 3,948 studies for a systematic review and meta-analysis comparing evidence-based radiotherapy need with real-world utilization</p>
+                  <p class="row-note">Extracting detailed information to characterize global inequities in access to cancer care</p>
                 </div>
               </li>
               <li class="row">
-                <div class="row-when">Nov 2024 &ndash; Nov 2025</div>
+                <div class="row-when">Nov 2024 &ndash; Sept 2026</div>
                 <div>
                   <div class="row-what">Methadone for Breakthrough Neuropathic Cancer Pain</div>
                   <p class="row-where">Supervisor: Dr. Mathieos Belayneh</p>
-                  <p class="row-note">Worked with physicians to review 706 patient charts; identified methadone as the second-most common breakthrough analgesic in British Columbia, with no documented severe adverse events.</p>
+                  <p class="row-note">Led a standardized chart review of 706 patients; identified methadone as the second-most common analgesic in BC for breakthrough neuropathic cancer pain</p>
+                  <p class="row-note">Data supported continued use of methadone as there were no documented severe adverse events</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Apr 2024 &ndash; Jan 2026</div>
                 <div>
-                  <div class="row-what">Rectal Squamous Cell Carcinoma (rSCC) in British Columbia</div>
+                  <div class="row-what">Rectal Squamous Cell Carcinoma (rSCC) in BC</div>
                   <p class="row-where">Supervisor: Dr. Jeffrey Sulpher</p>
-                  <p class="row-note">Worked with another medical student to standardize data extraction, resolve chart-review discrepancies, and analyze rSCC treatment patterns and outcomes.</p>
+                  <p class="row-note">Collaborated with another medical student to analyze rSCC treatment patterns and outcomes in BC by standardizing data extraction and meeting regularly to resolve chart-review conflicts</p>
                 </div>
               </li>
               <li class="row">
-                <div class="row-when">Dec 2025 &ndash; Jun 2026</div>
+                <div class="row-when">Dec 2025 &ndash; Jul 2026</div>
                 <div>
                   <div class="row-what">Chemoprevention Strategies in Transplant Recipients</div>
                   <p class="row-where">Supervisor: Dr. Fatemeh Jafarian</p>
-                  <p class="row-note">Coordinated screening and data extraction across a medical student team, resolving discrepancies and synthesizing evidence on strategies associated with reduced cutaneous malignancy risk in solid organ transplant recipients.</p>
+                  <p class="row-note">Investigated strategies associated with reduced cutaneous malignancy in solid organ transplant recipients</p>
+                  <p class="row-note">Coordinated literature review and data extraction across a team of 5 medical students, delegating individual tasks to ensure smooth synthesis of evidence</p>
                 </div>
               </li>
             </ul>
           </div>
 
           <div class="sub">
-            <h3 class="sub-title">Surgery &amp; global health</h3>
+            <h3 class="sub-title">Surgery</h3>
             <ul class="rows">
               <li class="row">
-                <div class="row-when">Feb 2024 &ndash; Apr 2026</div>
+                <div class="row-when">Feb 2024 &ndash; May 2026</div>
                 <div>
                   <div class="row-what">Surgical Technique &amp; Laparoscopic Right Hemicolectomy Outcomes</div>
                   <p class="row-where">Supervisor: Dr. Sharadh Sampath</p>
-                  <p class="row-note">Led a standardized review of 203 patient charts to examine how anastomotic technique and specimen-extraction site relate to short-term postoperative ileus and long-term incisional hernia.</p>
+                  <p class="row-note">Led a standardized review of 203 patient charts; examined associations of anastomotic technique and specimen-extraction site with short-term postoperative ileus and long-term incisional hernia</p>
                 </div>
               </li>
               <li class="row">
-                <div class="row-when">Apr 2026 &ndash; Jul 2026</div>
+                <div class="row-when">Mar 2026 &ndash; Jul 2026</div>
                 <div>
                   <div class="row-what">Artificial Intelligence in Global Trauma Care</div>
                   <p class="row-where">Supervisor: Dr. Morad Hameed</p>
-                  <p class="row-note">Conducted screening and full-text data extraction for a systematic review of research priorities and evidence gaps in artificial intelligence for trauma care in low- and middle-income countries.</p>
+                  <p class="row-note">Spearheaded screening and data extraction of 1,046 studies for a systematic review of research priorities and gaps in artificial intelligence for trauma care in low-/middle-income countries</p>
                 </div>
               </li>
               <li class="row">
@@ -1057,11 +1115,12 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Determinants of Digit Survival After Replantation</div>
                   <p class="row-where">Supervisor: Dr. David Tang</p>
-                  <p class="row-note">Worked with a team of surgeons on chart review; analyzed the effects of injury topography, postoperative complications, and venous anastomotic technique on digit replantation outcomes.</p>
+                  <p class="row-note">Detailed chart review and analyses of all digital replantation patients in BC over 10 years revealed that injury topography and postoperative complications are predictive of digit outcomes</p>
                 </div>
               </li>
             </ul>
           </div>
+
 
           <div class="sub">
             <h3 class="sub-title">Basic &amp; computational science</h3>
@@ -1071,7 +1130,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Microglia in Neurodegeneration</div>
                   <p class="row-where">Supervisor: Dr. Julien Muffat</p>
-                  <p class="row-note">Engineered doxycycline-inducible stem-cell models of microglial function using molecular cloning and CRISPR gene targeting, modelling mutant microglia with neurons.</p>
+                  <p class="row-note">Engineered doxycycline-inducible stem-cell models of microglial function using molecular cloning and CRISPR gene targeting, modelling mutant microglia with neurons</p>
                 </div>
               </li>
               <li class="row">
@@ -1079,7 +1138,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Cytokines in Acute Myeloid Leukemia</div>
                   <p class="row-where">Supervisor: Dr. Connie Eaves</p>
-                  <p class="row-note">Investigated cytokine-driven transformation to acute myeloid leukemia in vitro and in vivo.</p>
+                  <p class="row-note">Investigated cytokine-driven transformation to acute myeloid leukemia in vitro and in vivo</p>
                 </div>
               </li>
               <li class="row">
@@ -1087,7 +1146,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Atherosclerosis COBWEB Model</div>
                   <p class="row-where">Supervisor: Dr. Brad Bass</p>
-                  <p class="row-note">Developed 3 software models simulating blood-flow reduction across stages of atherosclerosis.</p>
+                  <p class="row-note">Developed 3 software models simulating blood-flow reduction across stages of atherosclerosis</p>
                 </div>
               </li>
             </ul>
