@@ -176,6 +176,15 @@ img{max-width:100%;display:block}
    ============================================================ */
 .cv-head{padding-block:clamp(3rem,7vw,5.5rem) 2rem;border-bottom:1px solid var(--rule)}
 .cv-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-0.04em}
+.cv-actions{margin:1.1rem 0 0}
+.dl{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.85rem;color:var(--ink);text-decoration:none;
+  border:1px solid var(--rule);border-radius:3px;padding:.5rem .85rem;
+  transition:border-color .2s ease;
+}
+.dl:hover{border-color:var(--ink)}
+.dl svg{width:14px;height:14px;flex:none}
 
 .cv-body{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);
   padding-block:clamp(2rem,4vw,3rem) 6rem}
@@ -201,6 +210,10 @@ img{max-width:100%;display:block}
 
 .sub{margin-top:2.6rem}
 .sub:first-of-type{margin-top:2rem}
+/* whatever follows a section heading sits at one consistent distance */
+.sec-title + .sub,
+.sec-title + .sec-note,
+.sec-title + .rows{margin-top:1.6rem}
 .sub-note{margin:.85rem 0 0;color:var(--slate);font-size:.95rem}
 .sub-title{
   font-family:var(--body);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
@@ -226,6 +239,7 @@ img{max-width:100%;display:block}
 .venues li{font-size:.93rem;color:var(--slate);padding:.2rem 0;line-height:1.5}
 .venues .tag{margin-left:.35rem;white-space:nowrap}
 .venues em{font-style:italic;color:var(--ink)}
+.venues a.doi{font-size:inherit}
 .cite-tail{margin:.45rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem .95rem;align-items:baseline}
 .doi{
   font-family:var(--body);font-size:.82rem;letter-spacing:0;color:var(--cobalt);
@@ -347,7 +361,6 @@ img{max-width:100%;display:block}
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(1.25rem,3vw,2.25rem);margin-top:clamp(1.75rem,4vw,2.5rem);align-items:start;
 }
-.show-label{display:block;margin-bottom:.65rem}
 .slideshow{min-width:0}
 .stage{
   position:relative;background:var(--ink);border-radius:4px;overflow:hidden;
@@ -479,7 +492,7 @@ img{max-width:100%;display:block}
   html{scroll-behavior:auto !important}
 }
 @media print{
-  .bar,.rail,.foot,.film-still{display:none !important}
+  .bar,.rail,.foot,.cv-actions,.embed{display:none !important}
   .page{display:block !important;padding-top:0}
   body{background:#fff;font-size:11pt}
   .cv-body{grid-template-columns:1fr}
@@ -552,6 +565,12 @@ img{max-width:100%;display:block}
   <div class="wrap">
     <div class="cv-head">
       <h1 class="cv-title">Curriculum vitae</h1>
+      <p class="cv-actions">
+        <a class="dl" href="Danlin-Zeng-CV.pdf" download>
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v8.5m0 0L4.8 6.8M8 10l3.2-3.2"/><path d="M2 11.5v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2"/></svg>
+          Download as PDF
+        </a>
+      </p>
     </div>
 
     <div class="cv-body">
@@ -574,7 +593,7 @@ img{max-width:100%;display:block}
           <div class="sub">
             <ul class="rows">
               <li class="row">
-                <div class="row-when">Aug 2023 &ndash; present</div>
+                <div class="row-when">2023 &ndash; 2027 (expected)</div>
                 <div>
                   <div class="row-what">Doctor of Medicine (MD) Candidate</div>
                   <p class="row-where">University of British Columbia, Vancouver, BC</p>
@@ -591,10 +610,10 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">2017 &ndash; 2021</div>
                 <div>
-                  <div class="row-what">Bachelor of Science, Physiology and Pharmacology (double major)</div>
+                  <div class="row-what">Bachelor of Science, Physiology and Pharmacology (Minor in Economics)</div>
                   <p class="row-where">University of Toronto, Toronto, ON</p>
-                  <p class="row-note">Minor in Economics.</p>
-                  <p class="row-note">3.99 cumulative GPA. Completed additional coursework in Python, bioinformatics, and statistics.</p>
+                  <p class="row-note">3.99 cumulative GPA</p>
+                  <p class="row-note">Completed additional coursework in Python, bioinformatics, and statistics</p>
                 </div>
               </li>
             </ul>
@@ -617,7 +636,7 @@ img{max-width:100%;display:block}
               <div>
                 <div class="row-what">Conquer Cancer Merit Award</div>
                 <p class="row-where">American Society of Clinical Oncology (ASCO) Annual Meeting</p>
-                <p class="row-note">One of 141 recipients at a meeting receiving over 8,500 abstract submissions worldwide.</p>
+                <p class="row-note">One of 141 merit awards among over 8,500 abstracts submitted worldwide.</p>
               </div>
             </li>
             <li class="row">
@@ -625,7 +644,7 @@ img{max-width:100%;display:block}
               <div>
                 <div class="row-what">Conquer Cancer Merit Award</div>
                 <p class="row-where">ASCO Quality Care Symposium</p>
-                <p class="row-note">One of 42 recipients selected from among the top-ranking accepted abstracts.</p>
+                <p class="row-note">One of 42 top-ranking abstracts selected among over 900 abstracts.</p>
               </div>
             </li>
             <li class="row">
@@ -663,6 +682,11 @@ img{max-width:100%;display:block}
               <ol class="cites" style="counter-reset:cite 0">
               <li>
                 <div>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bates A, Zhang Y, Cook O, Raman S, Leung B, Ho C, Nunez JJ. The impact of social isolation and psychological distress on overall survival in cancer: a population-based cohort study. <em>JCO Oncology Practice.</em> Accepted for publication Aug 2026.</p>
+                </div>
+              </li>
+              <li>
+                <div>
                   <p class="cite-text">Sagorin Z, <span class="cite-you">Zeng D</span>, Nguyen N, Yorke E, Sampath S. Intracorporeal anastomosis versus extracorporeal anastomosis for laparoscopic right hemicolectomy: short-term and long-term outcomes. <em>Surgical Endoscopy.</em> Published online Jul 13, 2026.</p>
                   <p class="cite-tail">
                     <a class="doi" href="https://doi.org/10.1007/s00464-026-13128-2" target="_blank" rel="noopener">doi.org/10.1007/s00464-026-13128-2</a>
@@ -682,66 +706,65 @@ img{max-width:100%;display:block}
 
           <div class="sub">
             <h3 class="sub-title">Manuscripts under review</h3>
-              <ol class="cites" style="counter-reset:cite 2">
+              <ol class="cites" style="counter-reset:cite 3">
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bondok M, Tao B, Al-Ghoul A, Pintwala R. Ocular adverse events associated with taxane chemotherapy: a disproportionality analysis of pharmacovigilance data. Submitted to <em>Journal of Ocular Pharmacology and Therapeutics</em>.</p>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bondok M, Tao B, Al-Ghoul A, Pintwala R. Ocular adverse events associated with taxane chemotherapy: a disproportionality analysis of pharmacovigilance data. <em>Journal of Ocular Pharmacology and Therapeutics.</em> Submitted Aug 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Kang M, Dhesa P, Dhillon R, <span class="cite-you">Zeng D</span>, Dhillon H, Uppal M, Gill K, Tao B, Navajas E. Regional trends in ophthalmic surgical wait times 2009&ndash;2024 in British Columbia, Canada: a retrospective study of the BC Surgical Wait Times dataset. Submitted to <em>Canadian Journal of Ophthalmology</em>.</p>
+                  <p class="cite-text">Kang M, Dhesa P, Dhillon R, <span class="cite-you">Zeng D</span>, Dhillon H, Uppal M, Gill K, Tao B, Navajas E. Regional trends in ophthalmic surgical wait times 2009&ndash;2024 in British Columbia, Canada: a retrospective study of the BC Surgical Wait Times dataset. <em>Canadian Journal of Ophthalmology.</em> Submitted Aug 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bates A, Zhang Y, Cook O, Raman S, Leung B, Ho C, Nunez JJ. The impact of social isolation and psychological distress on overall survival in cancer: a population-based cohort study. Submitted to <em>JCO Oncology Practice</em>.</p>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Wu E, Derocher H, Lin A, Siever J, Rao S, Lin T, Sit D, Murchison S, Sauciuc D, Atrchian S. Long-term outcomes and patterns of care in thymoma: a provincial cohort study. <em>Lung Cancer.</em> Submitted Sept 2026.</p>
+                  <p class="cite-tail">
+                    <a class="doi" href="https://doi.org/10.2139/ssrn.7412409" target="_blank" rel="noopener">Preprint</a>
+                  </p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota DR. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program. Submitted to <em>Global Health: Science and Practice</em>.</p>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota DR. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program. <em>Global Health: Science and Practice.</em> Submitted Sept 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Wu E, Atrchian S. Long-term outcomes and patterns of care in thymoma: a provincial cohort study. Submitted to <em>Journal of Thoracic Oncology</em>.</p>
+                  <p class="cite-text">Sagorin Z, <span class="cite-you">Zeng D</span>, Nguyen N, Yorke E, Sampath S. Pfannenstiel versus midline extraction in laparoscopic right hemicolectomy with intracorporeal anastomosis: association with ileus, hernia, and infection risk. <em>BMC Surgery.</em> Submitted May 2026.</p>
+                  <p class="cite-tail">
+                    <a class="doi" href="https://www.researchsquare.com/article/rs-9441793/v1" target="_blank" rel="noopener">Preprint</a>
+                  </p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Sagorin Z, <span class="cite-you">Zeng D</span>, Nguyen N, Yorke E, Sampath S. Pfannenstiel versus midline extraction in laparoscopic right hemicolectomy with intracorporeal anastomosis: association with ileus, hernia, and infection risk. Submitted to <em>BMC Surgery</em>.</p>
-                  <p class="cite-tail"><a class="doi" href="https://www.researchsquare.com/article/rs-9441793/v1" target="_blank" rel="noopener">Preprint</a></p>
+                  <p class="cite-text">Li K, <span class="cite-you">Zeng D</span>, Thapar A, Belayneh M. Managing neuropathic cancer breakthrough pain for patients on methadone: a retrospective cohort study. <em>Journal of Pain &amp; Palliative Care Pharmacotherapy.</em> Submitted Jul 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Li K, <span class="cite-you">Zeng D</span>, Thapar A, Belayneh M. Managing neuropathic cancer breakthrough pain for patients on methadone: a retrospective cohort study. Submitted to <em>Journal of Pain &amp; Palliative Care Pharmacotherapy</em>.</p>
+                  <p class="cite-text">Yuan L, <span class="cite-you">Zeng D</span>, Atrchian S, Clarke K, Sulpher J. Clinical outcomes of rectal squamous cell carcinoma in British Columbia, Canada. <em>Journal of Gastrointestinal Cancer.</em> Submitted Jun 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Yuan L, <span class="cite-you">Zeng D</span>, Atrchian S, Clarke K, Sulpher J. Clinical outcomes of rectal squamous cell carcinoma in British Columbia, Canada. Submitted to <em>Journal of Gastrointestinal Cancer</em>.</p>
+                  <p class="cite-text">Sheikh-Oleslami S, Daniels W, <span class="cite-you">Zeng D</span>, Abraha B, Tang D. Determinants of digit survival after replantation: injury topography and the complication cascade outweigh venous technique. <em>Journal of Hand Surgery.</em> Submitted Sept 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Sheikh-Oleslami S, Daniels W, <span class="cite-you">Zeng D</span>, Abraha B, Tang D. Determinants of digit survival after replantation: injury topography and the complication cascade outweigh venous technique. Submitted to <em>Journal of Hand Surgery</em>.</p>
+                  <p class="cite-text">Lee AH, Kruger HJ, Chen J, <span class="cite-you">Zeng D</span>, Narayanan D, Oosthuizen G, Hameed SM. Current priorities and gaps in artificial intelligence for global trauma care. <em>Journal of Trauma and Acute Care Surgery.</em> Submitted Aug 2026.</p>
                 </div>
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Lee AH, Kruger HJ, Chen J, <span class="cite-you">Zeng D</span>, Narayanan D, Oosthuizen G, Hameed SM. Current priorities and gaps in artificial intelligence for global trauma care. Submitted to <em>Journal of Trauma and Acute Care Surgery</em>.</p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p class="cite-text">Yang K, Li M, Skinner T, <span class="cite-you">Zeng D</span>, Sosa G, Han JY, Jafarian F. A dietary approach to skin cancer prevention in solid organ transplant recipients: a perspective. Submitted to <em>Frontiers in Transplantation</em>.</p>
+                  <p class="cite-text">Yang K, Li M, Skinner T, <span class="cite-you">Zeng D</span>, Sosa G, Han JY, Jafarian F. A dietary approach to skin cancer prevention in solid organ transplant recipients: a perspective. <em>Frontiers in Transplantation.</em> Submitted Jul 2026.</p>
                 </div>
               </li>
               </ol>
           </div>
-
         </section>
 
         <section class="sec" id="presentations">
@@ -786,7 +809,7 @@ img{max-width:100%;display:block}
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Li K, <span class="cite-you cite-pres">Zeng D</span>, Thapar A, Belayneh M. Managing neuropathic cancer breakthrough pain for patients on methadone: a retrospective cohort study.</p>
+                  <p class="cite-text"><span class="cite-pres">Li K</span>, <span class="cite-you">Zeng D</span>, Thapar A, Belayneh M. Managing neuropathic cancer breakthrough pain for patients on methadone: a retrospective cohort study.</p>
                   <ul class="venues">
                     <li><em>Canadian Society of Palliative Medicine</em>, Virtual, Sept 2025 <span class="tag">10-min oral</span></li>
                     <li><em>UBC Division of Palliative Care Research Day</em>, Vancouver, BC, Jun 2025 <span class="tag">15-min oral</span></li>
@@ -930,7 +953,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Acute Angle-Closure Glaucoma (ACG) &amp; Non-Ophthalmic Anticholinergics</div>
                   <p class="row-where">Supervisors: Dr. Vincent Tony Wong, Dr. Rob Pintwala</p>
-                  <p class="row-note">Led a sex-stratified disproportionality analysis of ACG reporting in patients on non-ophthalmic anticholinergics; independently learned and applied R to conduct the sensitivity analyzes.</p>
+                  <p class="row-note">Led a sex-stratified disproportionality analysis of ACG reporting in patients on non-ophthalmic anticholinergics; independently learned and applied R to conduct the sensitivity analyses.</p>
                 </div>
               </li>
               <li class="row">
@@ -980,7 +1003,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Global Radiotherapy Utilization</div>
                   <p class="row-where">Supervisor: Dr. Jessica Chan</p>
-                  <p class="row-note">Screened studies for a systematic review comparing evidence-based radiotherapy need against real-world utilization across health systems, to characterise global inequities in access.</p>
+                  <p class="row-note">Screened studies for a systematic review comparing evidence-based radiotherapy need against real-world utilization across health systems, to characterize global inequities in access.</p>
                 </div>
               </li>
               <li class="row">
@@ -996,7 +1019,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Rectal Squamous Cell Carcinoma (rSCC) in British Columbia</div>
                   <p class="row-where">Supervisor: Dr. Jeffrey Sulpher</p>
-                  <p class="row-note">Worked with another medical student to standardise data extraction, resolve chart-review discrepancies, and analyze rSCC treatment patterns and outcomes.</p>
+                  <p class="row-note">Worked with another medical student to standardize data extraction, resolve chart-review discrepancies, and analyze rSCC treatment patterns and outcomes.</p>
                 </div>
               </li>
               <li class="row">
@@ -1170,32 +1193,6 @@ img{max-width:100%;display:block}
             </ul>
           </div>
 
-          <div class="sub">
-            <h3 class="sub-title">Social activities &amp; sport</h3>
-            <ul class="rows">
-              <li class="row">
-                <div class="row-when">Oct 2023 &ndash; Jan 2025</div>
-                <div>
-                  <div class="row-what">Performer &mdash; Karate Chop, UBC</div>
-                  <p class="row-note">Rehearsed weekly with the club and performed a 20-minute karate skit at the annual UBC Med Gala.</p>
-                </div>
-              </li>
-              <li class="row">
-                <div class="row-when">Apr 2023 &ndash; present</div>
-                <div>
-                  <div class="row-what">Scuba diving</div>
-                  <p class="row-note">PADI Advanced Open Water, certified in Koh Tao, Thailand.</p>
-                </div>
-              </li>
-              <li class="row">
-                <div class="row-when">Nov 2023 &ndash; present</div>
-                <div>
-                  <div class="row-what">Running</div>
-                  <p class="row-note">Completed half-marathons recreationally and the Vancouver Sun Run.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
         </section>
 
         <section class="sec" id="skills">
@@ -1219,6 +1216,10 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">Languages</div>
                 <div><p class="row-note">English; Mandarin Chinese (native speaker).</p></div>
+              </li>
+              <li class="row">
+                <div class="row-when">Interests</div>
+                <div><p class="row-note">Scuba diving (PADI Advanced Open Water, certified in Koh Tao, Thailand); running (half-marathons and the Vancouver Sun Run); karate (performed a skit at the UBC Med Gala); photography.</p></div>
               </li>
             </ul>
           </div>
@@ -1278,7 +1279,6 @@ img{max-width:100%;display:block}
       <div class="shows">
 
         <div class="slideshow" aria-label="Dive photographs">
-          <span class="label show-label">Stills</span>
           <div class="stage">
             <div class="slide" data-cap="Koh Tao, Thailand" data-file="images/dive-reef.jpg">
               <img src="images/dive-reef.jpg" alt="Rabbitfish shoaling over brain coral" loading="lazy">
@@ -1296,7 +1296,6 @@ img{max-width:100%;display:block}
         </div>
 
         <div class="slideshow" aria-label="Dive clips">
-          <span class="label show-label">Clips</span>
           <div class="stage">
             <div class="slide" data-cap="Whale shark" data-file="videos/dive-clip-1.mp4">
               <span class="clip-badge">Loop</span>
@@ -1350,11 +1349,11 @@ img{max-width:100%;display:block}
             <div class="slide" data-cap="Pokhara, Nepal" data-file="images/photo-pokhara.jpg">
               <img src="images/photo-pokhara.jpg" alt="Rowing boats on a lake below mist-covered hills" loading="lazy">
             </div>
-            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-harbour.jpg">
-              <img src="images/photo-ny-harbour.jpg" alt="Masts and the skyline at sunset across the water" loading="lazy">
-            </div>
             <div class="slide" data-cap="Phuket, Thailand" data-file="images/photo-phuket.jpg">
               <img src="images/photo-phuket.jpg" alt="Figures on a beach against an orange sunset" loading="lazy">
+            </div>
+            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-harbour.jpg">
+              <img src="images/photo-ny-harbour.jpg" alt="Masts and the skyline at sunset across the water" loading="lazy">
             </div>
             <div class="slide" data-cap="Ha Giang, Vietnam" data-file="images/photo-vietnam-buffalo.jpg">
               <img src="images/photo-vietnam-buffalo.jpg" alt="Water buffalo grazing below limestone karst peaks" loading="lazy">
@@ -1382,7 +1381,6 @@ img{max-width:100%;display:block}
       <div class="shows">
 
         <div class="slideshow slideshow--tall" aria-label="Running photographs">
-          <span class="label show-label">Stills</span>
           <div class="stage">
             <div class="slide" data-cap="Vancouver waterfront" data-file="images/run-seawall.jpg">
               <img src="images/run-seawall.jpg" alt="Runners on a tree-lined waterfront path in Vancouver in autumn">
@@ -1403,7 +1401,6 @@ img{max-width:100%;display:block}
         </div>
 
         <div class="slideshow slideshow--tall" aria-label="Running clips">
-          <span class="label show-label">Clips</span>
           <div class="stage">
             <div class="slide" data-cap="Waterfront run" data-file="videos/run-clip-1.mp4">
               <span class="clip-badge">Loop</span>
@@ -1500,7 +1497,7 @@ img{max-width:100%;display:block}
     var count = bar.querySelector(".slide-count");
     var arrows = bar.querySelectorAll(".arrow");
 
-    var at = 0, timer = null, auto = !calm, onScreen = true, held = false;
+    var at = 0, timer = null, auto = !calm, onScreen = false, held = false;
 
     /* Missing media falls back to a labelled slot rather than a blank stage */
     slides.forEach(function(s){
@@ -1599,6 +1596,12 @@ img{max-width:100%;display:block}
       if (Math.abs(dx) > 45){ stopAuto(); go(at + (dx < 0 ? 1 : -1)); }
     });
 
+    /* Scrolling means the reader has not arrived yet. Push the timer back on
+       every scroll so the opening slide is still showing once they settle. */
+    window.addEventListener("scroll", function(){
+      if (onScreen && auto) schedule();
+    }, { passive: true });
+
     show.addEventListener("mouseenter", function(){ held = true; clearTimeout(timer); });
     show.addEventListener("mouseleave", function(){ held = false; schedule(); });
     show.addEventListener("focusin",   function(){ held = true; clearTimeout(timer); });
@@ -1613,14 +1616,26 @@ img{max-width:100%;display:block}
     }
 
     if ("IntersectionObserver" in window){
+      /* Two thresholds, for two different jobs.
+         At 0.12 the timer began while the stage was still peeking in at the
+         bottom of a phone screen, so by the time you had scrolled to it and
+         read the caption it had already advanced. It now waits until the show
+         is more than half visible.
+         And once a show has scrolled entirely away it returns to slide one, so
+         arriving at a section always starts at the picture chosen to open it. */
       new IntersectionObserver(function(entries){
-        onScreen = entries[0].isIntersecting;
-        if (onScreen){ playActive(); schedule(); }
-        else {
+        var ratio = entries[0].intersectionRatio;
+        if (ratio >= 0.55){
+          onScreen = true;
+          playActive();
+          schedule();
+        } else if (ratio === 0){
+          onScreen = false;
           clearTimeout(timer);
+          if (auto && at !== 0) go(0);
           slides.forEach(function(s){ var v = s.querySelector("video"); if (v) v.pause(); });
         }
-      }, { threshold: 0.12 }).observe(show);
+      }, { threshold: [0, 0.55] }).observe(show);
     }
 
     go(0);
