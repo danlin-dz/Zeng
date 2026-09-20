@@ -163,3 +163,10 @@ Two families only, loaded from Google Fonts:
 - **Inter** &mdash; everything else: body copy, navigation, labels, captions, dates, DOIs (`--body`)
 
 `--mono` is kept as a variable name but points at Inter, so there is one text face across the whole site. Small labels sit at 0.72&ndash;0.76rem with light tracking rather than the tighter, wider-tracked settings used earlier; captions and the footer name are sentence case.
+
+
+## The downloadable CV
+
+`Danlin-Zeng-CV.pdf` is generated **from the CV page itself**, not from a Word file, so the download can never drift out of step with the site. Regenerate it whenever the CV changes.
+
+The generator applies a print-density stylesheet on top of the screen layout — the screen spacing runs to 18 pages on paper, the tightened version to 9. It hides the nav bar, the section rail, the footer, the download button and the embedded film.
