@@ -247,11 +247,17 @@ img{max-width:100%;display:block}
   transition:border-color .18s ease;word-break:break-all;
 }
 .doi:hover{border-bottom:2px solid var(--fluor)}
-.tag--award{font-weight:700;color:var(--ink);border-color:var(--ink)}
 .tag{
   font-family:var(--body);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
   color:var(--slate);border:1px solid var(--rule);border-radius:2px;padding:.15rem .45rem;
   background:var(--card);
+}
+/* Must come AFTER .tag — same specificity, so source order decides. Inverted
+   rather than coloured: it cannot be mistaken for a link, and it survives a
+   black-and-white print, which a blue or gold tag would not. */
+.tag--award{
+  color:var(--ink);border-color:var(--ink);
+  font-weight:600;letter-spacing:.08em;
 }
 
 /* Education / experience rows */
@@ -761,7 +767,7 @@ img{max-width:100%;display:block}
               </li>
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota DR. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program. <em>Global Health: Science and Practice.</em> Submitted Sept 2026.</p>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota D. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program. <em>Global Health: Science and Practice.</em> Submitted Sept 2026.</p>
                 </div>
               </li>
               <li>
@@ -803,7 +809,7 @@ img{max-width:100%;display:block}
 
         <section class="sec" id="presentations">
           <h2 class="sec-title">Conference presentations</h2>
-          <p class="sec-note">25 presentations in total: 12 oral, 13 poster. Presenting author underlined.</p>
+          <p class="sec-note">26 presentations in total: 13 oral, 13 poster. Presenting author underlined.</p>
 
           <div class="sub">
             <h3 class="sub-title">Oral</h3>
@@ -834,7 +840,7 @@ img{max-width:100%;display:block}
               </li>
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota DR. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program.</p>
+                  <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Ho A, Bondy S, Kong P, Cunningham J, Sidi S, Lee G, Kapoor V, Nakajima L, Sapkota D. Improving sexual and reproductive health knowledge in a low-income rural community: the adolescent health program.</p>
                   <ul class="venues">
                     <li><em>Western Medical Research Conference</em>, Carmel, CA, Jan 2025 <span class="tag">15-min oral</span></li>
                     <li><em>UBC FLEX Activity Day</em>, Vancouver, BC, Jan 2025 <span class="tag">1-min oral</span></li>
@@ -880,6 +886,14 @@ img{max-width:100%;display:block}
                   <p class="cite-text"><span class="cite-you cite-pres">Zeng D</span>, Fortier AM, Park M. Targeting chemo-resistant triple-negative breast cancer.</p>
                   <ul class="venues">
                     <li><em>Biochemistry Graduate Student Society Research Day, McGill University</em>, Montr&eacute;al, QC, Apr 2022 <span class="tag">3-min oral</span></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <p class="cite-text"><span class="cite-pres">Sidi S</span>, Kong P, Lee G, <span class="cite-you">Zeng D</span>, Ho A, Bondy S, Cunningham J, Chambers A, Loughton S, Sapkota D, Kumal S, Kapoor V, Nakajima L. Understanding adolescent mental health in rural Nepal: results of a mental health literacy needs assessment.</p>
+                  <ul class="venues">
+                    <li><em>Western Medical Research Conference</em>, Carmel, CA, Jan 2025</li>
                   </ul>
                 </div>
               </li>
