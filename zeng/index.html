@@ -293,6 +293,13 @@ img{max-width:100%;display:block}
 .row-where{color:var(--slate);margin:.25rem 0 0;font-size:.98rem}
 .row-note{margin:.5rem 0 0;font-size:.95rem;max-width:var(--measure)}
 .row-note--tight{margin-top:.15rem}
+/* Description lines are bulleted wherever the Word CV bullets them. Awards
+   stay plain — there the line qualifies the award rather than listing work —
+   and Skills are category rows, not descriptions. */
+#education .row-note,#experience .row-note,#outreach .row-note{position:relative;padding-left:1.05em}
+#education .row-note::before,#experience .row-note::before,#outreach .row-note::before{
+  content:"\2022";position:absolute;left:0;color:var(--slate);
+}
 #page-cv .row-note,#page-cv .cite-text{max-width:72ch}
 
 /* Films */
@@ -682,8 +689,7 @@ img{max-width:100%;display:block}
                   <div class="row-what">Bachelor of Science, Physiology and Pharmacology</div>
                   <p class="row-where">University of Toronto, Toronto, ON</p>
                   <p class="row-note">3.99 cumulative GPA</p>
-                  <p class="row-note">Minor in Economics</p>
-                  <p class="row-note">Completed additional coursework in Python, bioinformatics, and statistics</p>
+                  <p class="row-note">Minor in Economics. Also completed additional coursework in Python, bioinformatics, and statistics</p>
                 </div>
               </li>
             </ul>
@@ -1322,14 +1328,6 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">Statistical analysis</div>
                 <div><p class="row-note">R, Python, SPSS; survival analysis (Kaplan&ndash;Meier, Cox proportional hazards, competing risks); FDA Adverse Event Reporting System (FAERS) disproportionality analysis</p></div>
-              </li>
-              <li class="row">
-                <div class="row-when">Laboratory</div>
-                <div><p class="row-note">CRISPR gene targeting, molecular cloning, cell culture</p></div>
-              </li>
-              <li class="row">
-                <div class="row-when">Evidence synthesis</div>
-                <div><p class="row-note">Systematic review and meta-analysis (Covidence)</p></div>
               </li>
               <li class="row">
                 <div class="row-when">Languages</div>
