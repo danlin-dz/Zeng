@@ -177,6 +177,7 @@ img{max-width:100%;display:block}
 .cv-head{padding-block:clamp(3rem,7vw,5.5rem) 2rem;border-bottom:1px solid var(--rule)}
 .cv-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-0.04em}
 .cv-actions{margin:1.1rem 0 0}
+.print-head{display:none}
 .dl{
   display:inline-flex;align-items:center;gap:.5rem;
   font-size:.85rem;color:var(--ink);text-decoration:none;
@@ -263,10 +264,24 @@ img{max-width:100%;display:block}
 /* Education / experience rows */
 .rows{margin:0;padding:0;list-style:none}
 .row{
-  display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:.9rem 1.6rem;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1.5rem;
   padding:1.2rem 0;border-bottom:1px solid var(--rule);
 }
-.row-when{font-size:.82rem;letter-spacing:0;color:var(--slate);padding-top:.3rem;font-variant-numeric:tabular-nums}
+/* The body wrapper steps aside so its children join the row's grid: title
+   beside the date, then everything else spanning the full width beneath. */
+.row > div:not(.row-when){display:contents}
+.row-when{
+  grid-column:2;grid-row:1;text-align:right;white-space:nowrap;
+  font-size:.82rem;letter-spacing:0;color:var(--slate);padding-top:.3rem;
+  font-variant-numeric:tabular-nums;
+}
+.row-what{grid-column:1;grid-row:1}
+.row-where,.row-note,.row .embed{grid-column:1 / -1}
+
+/* Skills: the left column is a category label, so it stays on the left. */
+#skills .row{grid-template-columns:9.5rem minmax(0,1fr)}
+#skills .row-when{grid-column:1;text-align:left;white-space:normal}
+#skills .row > div:not(.row-when){display:block;grid-column:2;grid-row:1}
 .row-what{font-family:var(--display);font-size:1.12rem;font-weight:600;letter-spacing:-0.015em}
 .embed{
   margin-top:1.1rem;max-width:520px;aspect-ratio:16/9;
@@ -278,6 +293,7 @@ img{max-width:100%;display:block}
 .row-where{color:var(--slate);margin:.25rem 0 0;font-size:.98rem}
 .row-note{margin:.5rem 0 0;font-size:.95rem;max-width:var(--measure)}
 .row-note--tight{margin-top:.15rem}
+#page-cv .row-note,#page-cv .cite-text{max-width:72ch}
 
 /* Films */
 .films{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem;margin-top:1.6rem}
@@ -486,8 +502,12 @@ img{max-width:100%;display:block}
   .foot-mail{display:inline-block;padding-block:.35rem}
   .slink,.mailto{display:inline-block;padding-block:.5rem}
   .nav-link{padding:.85rem .5rem;font-size:.68rem;letter-spacing:.1em}
-  .row{grid-template-columns:1fr;gap:.35rem}
-  .row-when{padding-top:0}
+  .row{grid-template-columns:1fr}
+  .row-what{grid-row:1}
+  .row-when{grid-column:1;grid-row:2;text-align:left;white-space:normal;padding-top:.2rem}
+  #skills .row{grid-template-columns:1fr}
+  #skills .row-when{grid-row:1}
+  #skills .row > div:not(.row-when){grid-column:1;grid-row:2}
   .cites > li{grid-template-columns:1.9rem minmax(0,1fr);gap:.6rem}
 }
 
@@ -513,8 +533,11 @@ img{max-width:100%;display:block}
 
   .wrap{max-width:none;padding-inline:0}
   .cv-body{grid-template-columns:1fr;padding-block:0}
-  .cv-head{padding-block:0 .6rem}
-  .cv-title{font-size:20pt}
+  .cv-head{padding-block:0;border-bottom:0}
+  .cv-title{display:none}
+  .print-head{display:block;margin:0 0 .5rem;padding-bottom:.55rem;border-bottom:1.5px solid var(--ink)}
+  .print-name{margin:0;font-family:var(--display);font-size:24pt;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .print-meta{margin:.2rem 0 0;font-size:9.5pt;color:var(--slate)}
 
   .sec{page-break-inside:auto;padding-bottom:.9rem}
   .sec-title{font-size:14pt;padding-bottom:.25rem;margin-bottom:.1rem;page-break-after:avoid}
@@ -525,10 +548,12 @@ img{max-width:100%;display:block}
   .sec-note,.sub-note{margin:.35rem 0 .5rem;font-size:9pt}
 
   .cites > li,.row{page-break-inside:avoid}
-  .row{padding:.42rem 0;gap:.2rem 1rem}
+  .row{padding:.42rem 0;column-gap:1rem}
+  #skills .row{grid-template-columns:8rem minmax(0,1fr)}
   .row-what{font-size:10.5pt}
   .row-where,.row-note{font-size:9.2pt}
   .row-note{margin-top:.18rem}
+  #page-cv .row-note,#page-cv .cite-text{max-width:none}
   .row-when{font-size:8.6pt;padding-top:.12rem}
 
   .cites > li{padding:.42rem 0}
@@ -603,6 +628,11 @@ img{max-width:100%;display:block}
 <section class="page" id="page-cv">
   <div class="wrap">
     <div class="cv-head">
+      <div class="print-head">
+        <p class="print-name">Danlin Zeng</p>
+        <p class="print-meta">MD Candidate 2027 &middot; University of British Columbia</p>
+        <p class="print-meta">danlinz@student.ubc.ca &middot; danlinzeng.com</p>
+      </div>
       <h1 class="cv-title">Curriculum vitae</h1>
       <p class="cv-actions">
         <a class="dl" href="Danlin-Zeng-CV.pdf" download>
@@ -643,7 +673,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Master of Science, Biochemistry</div>
                   <p class="row-where">McGill University, Montr&eacute;al, QC &middot; Supervisor: Dr. Morag Park</p>
-                  <p class="row-note">Thesis: Targeting chemotherapy-induced senescence escape to reduce breast cancer cell survival.</p>
+                  <p class="row-note">Thesis: Targeting chemotherapy-induced senescence escape to reduce breast cancer cell survival</p>
                 </div>
               </li>
               <li class="row">
@@ -668,7 +698,7 @@ img{max-width:100%;display:block}
               <div>
                 <div class="row-what">ESCRS Bursary Award</div>
                 <p class="row-where">European Society of Cataract &amp; Refractive Surgeons (ESCRS)</p>
-                <p class="row-note">Competitive bursary for the highest-scoring abstracts.</p>
+                <p class="row-note">Competitive bursary for the highest-scoring abstracts</p>
               </div>
             </li>
             <li class="row">
@@ -676,7 +706,7 @@ img{max-width:100%;display:block}
               <div>
                 <div class="row-what">Conquer Cancer Merit Award</div>
                 <p class="row-where">American Society of Clinical Oncology (ASCO) Annual Meeting</p>
-                <p class="row-note">One of 141 merit awards among over 8,500 abstracts submitted worldwide.</p>
+                <p class="row-note">One of 141 merit awards among over 8,500 abstracts submitted worldwide</p>
               </div>
             </li>
             <li class="row">
@@ -684,7 +714,7 @@ img{max-width:100%;display:block}
               <div>
                 <div class="row-what">Conquer Cancer Merit Award</div>
                 <p class="row-where">ASCO Quality Care Symposium</p>
-                <p class="row-note">One of 42 top-ranking abstracts selected among over 900 abstracts.</p>
+                <p class="row-note">One of 42 top-ranking abstracts selected among over 900 abstracts</p>
               </div>
             </li>
             <li class="row">
@@ -704,7 +734,7 @@ img{max-width:100%;display:block}
             <li class="row">
               <div class="row-when">2018 &ndash; 2021</div>
               <div>
-                <div class="row-what">Undergraduate scholarships</div>
+                <div class="row-what">Undergraduate Scholarships</div>
                 <p class="row-where">University of Toronto</p>
                 <p class="row-note">Dr. James A. &amp; Connie P. Dickson Scholarship (2020, 2021)</p>
                   <p class="row-note row-note--tight">Alen Milne McCombie Scholarship (2019)</p>
@@ -1143,7 +1173,7 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">Sept 2024 &ndash; Aug 2026</div>
                 <div>
-                  <div class="row-what">Determinants of Digit Survival After Replantation</div>
+                  <div class="row-what">Determinants of Digit Survival after Replantation</div>
                   <p class="row-where">Supervisor: Dr. David Tang</p>
                   <p class="row-note">Detailed chart review and analyses of all digital replantation patients in BC over 10 years revealed that injury topography and postoperative complications are predictive of digit outcomes</p>
                 </div>
@@ -1193,25 +1223,25 @@ img{max-width:100%;display:block}
               <li class="row">
                 <div class="row-when">Jul 2026 &ndash; present</div>
                 <div>
-                  <div class="row-what">Web Developer &mdash; <a class="row-link" href="https://eyelingual.danlin.workers.dev/" target="_blank" rel="noopener">Eyelingual</a></div>
-                  <p class="row-note">Developed and launched Eyelingual, a web-based tool for conducting ophthalmic examinations across a language barrier when live interpreter services are unavailable.</p>
-                  <p class="row-note">Bridging inequities in access to ophthalmic care by supporting communication with patients who prefer care in a language other than English.</p>
+                  <div class="row-what">Founder &amp; Web Developer &mdash; <a class="row-link" href="https://eyelingual.danlin.workers.dev/" target="_blank" rel="noopener">Eyelingual</a></div>
+                  <p class="row-note">Developed and launched Eyelingual, a web-based tool for conducting ophthalmic examinations across a language barrier when live interpreter services are unavailable</p>
+                  <p class="row-note">Bridging inequities in access to ophthalmic care by supporting communication with patients who prefer care in a language other than English</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Sept 2025 &ndash; present</div>
                 <div>
-                  <div class="row-what">Vision Mate Volunteer &mdash; Canadian National Institute for the Blind (CNIB) Foundation</div>
-                  <p class="row-note">Supported a client living with complete vision loss through biweekly meetings.</p>
-                  <p class="row-note">Built close rapport through companionship and practical assistance &mdash; reading mail, running errands, grocery shopping, and accompaniment on outings.</p>
+                  <div class="row-what">Vision Mate &mdash; Canadian National Institute for the Blind (CNIB) Foundation</div>
+                  <p class="row-note">Supported a client living with complete vision loss through biweekly home visits</p>
+                  <p class="row-note">Built close rapport through companionship and practical assistance &mdash; reading mail, running errands, grocery shopping, and accompaniment on outings</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Oct 2024 &ndash; present</div>
                 <div>
                   <div class="row-what">Patient Outreach &amp; Interview &mdash; Patient Experience Project</div>
-                  <p class="row-note">Co-produced short films with patients sharing their lived experiences of illness and care.</p>
-                  <p class="row-note">Advocated for and secured their integration into the UBC MD curriculum, to foster a holistic understanding of illness and strengthen empathy for what patients live through.</p>
+                  <p class="row-note">Co-produced short films with patients sharing their lived experiences of illness and care</p>
+                  <p class="row-note">Advocated for and secured their integration into the UBC MD curriculum, to foster a holistic understanding of illness and strengthen empathy for what patients live through</p>
                       <div class="embed">
                         <iframe src="https://www.youtube-nocookie.com/embed/CJRfO_0XbEw"
                                 title="Patient Experience Project &mdash; short film"
@@ -1225,22 +1255,22 @@ img{max-width:100%;display:block}
                 <div class="row-when">Sept 2023 &ndash; May 2025</div>
                 <div>
                   <div class="row-what">Newcomer Support &mdash; Refugee Health Initiative, UBC</div>
-                  <p class="row-note">Organized and delivered annual refugee-health outreach presentations at local community centres.</p>
-                  <p class="row-note">Provided a safe space and longitudinal support to a refugee family through monthly meetings, holding open discussion of resettlement challenges and adjustment.</p>
+                  <p class="row-note">Organized and delivered annual refugee-health outreach presentations at local community centres</p>
+                  <p class="row-note">Provided a safe space and longitudinal support to a refugee family through monthly meetings, holding open discussion of resettlement challenges and adjustment</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Aug 2021 &ndash; present</div>
                 <div>
                   <div class="row-what">Client Support &mdash; Shelter Movers</div>
-                  <p class="row-note">Worked in teams of 4&ndash;5 volunteers to move clients out of homes where they had experienced intimate partner violence, holding trauma-informed conversations where the client wanted them.</p>
+                  <p class="row-note">Worked in teams of 4&ndash;5 volunteers to move clients out of homes where they had experienced intimate partner violence, holding trauma-informed conversations where the client wanted them</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Aug 2024 &ndash; May 2025</div>
                 <div>
                   <div class="row-what">Events Director &mdash; Women&rsquo;s Health Initiative, UBC</div>
-                  <p class="row-note">Designed and, with a physiotherapist, led a trauma-informed pelvic examination training session for medical students.</p>
+                  <p class="row-note">Designed and, with a physiotherapist, led a trauma-informed pelvic examination training session for medical students</p>
                 </div>
               </li>
             </ul>
@@ -1253,30 +1283,30 @@ img{max-width:100%;display:block}
                 <div class="row-when">Feb 2026 &ndash; Jul 2026</div>
                 <div>
                   <div class="row-what">Educational Exhibit &mdash; Orbital Trauma on CT</div>
-                  <p class="row-note">Worked with radiologist Dr. Nicolas Murray to develop a systematic checklist that ensures vision-threatening orbital injuries are recognized on trauma imaging; designed the formal exhibit.</p>
+                  <p class="row-note">Worked with radiologist Dr. Nicolas Murray to develop a systematic checklist that ensures vision-threatening orbital injuries are recognized on trauma imaging; designed the formal exhibit</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Oct 2023 &ndash; present</div>
                 <div>
                   <div class="row-what">Sexual &amp; Reproductive Health Program &mdash; Nepal Health Education, UBC</div>
-                  <p class="row-note">Spearheaded changes to a sexual and reproductive health (SRH) education programme for adolescents in rural Nepal, based on local educator feedback, so the curriculum is culturally appropriate.</p>
-                  <p class="row-note">Designed and facilitated the formal programme evaluation; advocated for delivery to early adolescents, where larger health-literacy gains were demonstrated in pre-menstruation females.</p>
-                  <p class="row-note">Drafted thoroughly researched responses to commonly asked SRH questions.</p>
+                  <p class="row-note">Spearheaded changes to a sexual and reproductive health (SRH) education programme for adolescents in rural Nepal, based on local educator feedback, so the curriculum is culturally appropriate</p>
+                  <p class="row-note">Designed and facilitated the formal programme evaluation; advocated for delivery to early adolescents, where larger health-literacy gains were demonstrated in pre-menstruation females</p>
+                  <p class="row-note">Drafted thoroughly researched responses to commonly asked SRH questions</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Sept 2024 &ndash; present</div>
                 <div>
                   <div class="row-what">Mentorship &amp; Shadowing Executive &mdash; Oncology Interest Group, UBC</div>
-                  <p class="row-note">Coordinated and facilitated numerous oncologist-led mentorship and clinical shadowing placements for other medical students.</p>
+                  <p class="row-note">Coordinated and facilitated numerous oncologist-led mentorship and clinical shadowing placements for other medical students</p>
                 </div>
               </li>
               <li class="row">
                 <div class="row-when">Oct 2024 &ndash; Jun 2025</div>
                 <div>
                   <div class="row-what">Cultural Competency Training &mdash; Global Health Initiative, UBC</div>
-                  <p class="row-note">Facilitated sessions engaging other medical students in conversations on cultural humility before their global health projects, drawing on what I took away from my own visit to rural Nepal.</p>
+                  <p class="row-note">Facilitated sessions engaging other medical students in conversations on cultural humility before their global health projects, drawing on what I took away from my own visit to rural Nepal</p>
                 </div>
               </li>
             </ul>
@@ -1292,23 +1322,23 @@ img{max-width:100%;display:block}
             <ul class="rows">
               <li class="row">
                 <div class="row-when">Statistical analysis</div>
-                <div><p class="row-note">R, Python, SPSS; survival analysis (Kaplan&ndash;Meier, Cox proportional hazards, competing risks); FDA Adverse Event Reporting System (FAERS) disproportionality analysis.</p></div>
+                <div><p class="row-note">R, Python, SPSS; survival analysis (Kaplan&ndash;Meier, Cox proportional hazards, competing risks); FDA Adverse Event Reporting System (FAERS) disproportionality analysis</p></div>
               </li>
               <li class="row">
                 <div class="row-when">Laboratory</div>
-                <div><p class="row-note">CRISPR gene targeting, molecular cloning, cell culture.</p></div>
+                <div><p class="row-note">CRISPR gene targeting, molecular cloning, cell culture</p></div>
               </li>
               <li class="row">
                 <div class="row-when">Evidence synthesis</div>
-                <div><p class="row-note">Systematic review and meta-analysis (Covidence).</p></div>
+                <div><p class="row-note">Systematic review and meta-analysis (Covidence)</p></div>
               </li>
               <li class="row">
                 <div class="row-when">Languages</div>
-                <div><p class="row-note">English; Mandarin Chinese (native speaker).</p></div>
+                <div><p class="row-note">English; Mandarin Chinese (native speaker)</p></div>
               </li>
               <li class="row">
                 <div class="row-when">Interests</div>
-                <div><p class="row-note">Scuba diving (PADI Advanced Open Water, certified in Koh Tao, Thailand); running (half-marathons and the Vancouver Sun Run); karate (performed a skit at the UBC Med Gala); photography.</p></div>
+                <div><p class="row-note">Scuba diving (PADI Advanced Open Water, certified in Koh Tao, Thailand); running (half-marathons and the Vancouver Sun Run); karate (performed a skit at the UBC Med Gala); photography</p></div>
               </li>
             </ul>
           </div>
