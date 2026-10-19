@@ -282,7 +282,7 @@ img{max-width:100%;display:block}
 #skills .row{grid-template-columns:9.5rem minmax(0,1fr)}
 #skills .row-when{grid-column:1;text-align:left;white-space:normal}
 #skills .row > div:not(.row-when){display:block;grid-column:2;grid-row:1}
-.row-what{font-family:var(--display);font-size:1.12rem;font-weight:600;letter-spacing:-0.015em}
+.row-what{font-family:var(--display);font-size:1.12rem;font-weight:600;letter-spacing:-0.015em;line-height:1.3}
 .embed{
   margin-top:1.1rem;max-width:520px;aspect-ratio:16/9;
   border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--ink);
@@ -290,7 +290,8 @@ img{max-width:100%;display:block}
 .embed iframe{width:100%;height:100%;border:0;display:block}
 .row-link{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .row-link:hover{border-bottom-color:var(--cobalt)}
-.row-where{color:var(--slate);margin:.2rem 0 0;font-size:.98rem}
+.row-where{color:var(--slate);margin:.15rem 0 0;font-size:.98rem;line-height:1.35}
+.row-where + .row-note{margin-top:.3rem}
 .row-note{margin:.4rem 0 0;font-size:.95rem;max-width:var(--measure)}
 .row-note--tight{margin-top:.12rem}
 /* A single-line title is not prose, so the reading measure does not apply. */
@@ -338,7 +339,7 @@ img{max-width:100%;display:block}
    ABOUT
    ============================================================ */
 .about-head{padding-block:clamp(3rem,7vw,5.5rem) clamp(2rem,4vw,3rem)}
-.about-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-0.04em;max-width:16ch}
+.about-title{font-size:clamp(1.92rem,4.8vw,3.2rem);font-weight:700;letter-spacing:-0.04em}
 .about-intro{margin:1.4rem 0 0;max-width:56ch;font-size:1.08rem}
 
 .hobby{
@@ -355,7 +356,7 @@ img{max-width:100%;display:block}
 .hobby--joined{border-top:0;padding-top:1.25rem}
 .hobby-title--lg{font-size:clamp(2rem,3.8vw,2.7rem)}
 .hobby-title{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:600;letter-spacing:-0.03em;margin:.7rem 0 .9rem}
-.hobby-copy{margin:0;max-width:72ch;color:var(--ink)}
+.hobby-copy{margin:0;max-width:72ch;color:var(--ink);text-wrap:pretty}
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
 .mailto{
@@ -458,6 +459,16 @@ img{max-width:100%;display:block}
 }
 .arrow:hover{border-color:var(--ink)}
 .arrow svg{width:9px;height:9px}
+
+/* ---- Journey map: a canvas drawn live, so it stays sharp at any width ---- */
+.journey{margin:clamp(2rem,5vw,3rem) 0 0}
+.journey-stage{
+  position:relative;aspect-ratio:12/5;border-radius:4px;overflow:hidden;
+  background:#F2F2F0;border:1px solid var(--rule);
+}
+.journey-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.journey-toggle svg{width:10px;height:10px}
+@media (max-width:620px){ .journey-stage{aspect-ratio:4/3} }
 
 /* ============================================================
    FOOTER
@@ -1392,10 +1403,9 @@ img{max-width:100%;display:block}
     <!-- SCUBA -->
     <section class="hobby" id="scuba">
       <div class="hobby-head">
-        <span class="label">Underwater</span>
         <h2 class="hobby-title">Scuba diving</h2>
-        <p class="hobby-copy">Certified through PADI Advanced Open Water. Koh Tao, Thailand is my favourite place to dive, and where most of the photographs below were taken.</p>
-        <p class="hobby-copy" style="margin-top:.9rem">Diving has made me detail oriented and observant of the small things. You check your gear, then you check it again, and you learn to notice what is not quite right before it becomes something larger.</p>
+        <p class="hobby-copy">Certified through PADI Advanced Open Water.<br>Koh Tao, Thailand is my favourite place to dive, and where most of the photographs below were taken.</p>
+        <p class="hobby-copy" style="margin-top:.9rem">Diving taught me to be observant of the small things. I&nbsp;learned to check my equipment systematically, recognize subtle changes in my surroundings, and anticipate potential problems before they became dangerous.</p>
       </div>
 
       <div class="shows">
@@ -1452,9 +1462,8 @@ img{max-width:100%;display:block}
     <section class="hobby" id="photography">
       <div class="hobby-grid">
         <div class="hobby-text">
-          <span class="label">Sometimes underwater, sometimes on land</span>
           <h2 class="hobby-title">Photography</h2>
-          <p class="hobby-copy">The experiences that stay with me tend to be the highly visual ones. A camera and a few rolls of film are how I try to share them with more people.</p>
+          <p class="hobby-copy">The experiences that stay with me tend to be the highly visual ones. A camera and a few rolls of film are how I&nbsp;try to share them with more people.</p>
         </div>
 
         <div class="slideshow slideshow--tall" aria-label="Photographs">
@@ -1494,9 +1503,8 @@ img{max-width:100%;display:block}
     <!-- RUNNING -->
     <section class="hobby" id="running">
       <div class="hobby-head">
-        <span class="label">On land</span>
         <h2 class="hobby-title">Running</h2>
-        <p class="hobby-copy">I started running in 2023, my first year of medical school, because of my classmates. I trained by setting consistent time goals, and challenged myself to run even on the days I felt unmotivated.</p>
+        <p class="hobby-copy">I&nbsp;started running in 2023, my first year of medical school, because of my classmates. I&nbsp;set consistent time goals and challenged myself to run even on the days I&nbsp;felt unmotivated.</p>
         <p class="hobby-copy" style="margin-top:.9rem">Running is honest about whether the work went in.</p>
       </div>
 
@@ -1524,7 +1532,7 @@ img{max-width:100%;display:block}
 
         <div class="slideshow slideshow--tall" aria-label="Running clips">
           <div class="stage">
-            <div class="slide" data-cap="Waterfront run" data-file="videos/run-clip-1.mp4">
+            <div class="slide" data-cap="Waterfront run, New York" data-file="videos/run-clip-1.mp4">
               <span class="clip-badge">Loop</span>
               <video muted loop playsinline preload="metadata" poster="images/poster-run-1.jpg">
                 <source src="videos/run-clip-1.mp4" type="video/mp4">
@@ -1547,9 +1555,23 @@ img{max-width:100%;display:block}
           <p style="margin:1.5rem 0 0"><a class="mailto" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a></p>
         </div>
         <div class="hobby-text">
-          <p class="hobby-copy">I was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I came back to Vancouver for medicine.</p>
+          <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
         </div>
       </div>
+
+      <figure class="journey" id="journey">
+        <div class="journey-stage">
+          <canvas class="journey-canvas" role="img" aria-label="Animated map of where I have lived: Sendai, Japan; Shanghai, China; Vancouver; Toronto; Montréal; and back to Vancouver."></canvas>
+        </div>
+        <div class="ticks journey-ticks"></div>
+        <div class="slide-bar">
+          <span class="slide-cap journey-cap" aria-live="off"></span>
+          <div class="slide-nav">
+            <span class="slide-count journey-count"></span>
+            <button class="arrow journey-toggle" type="button" aria-label="Pause map animation"></button>
+          </div>
+        </div>
+      </figure>
     </section>
 
     <div class="foot">
@@ -1890,6 +1912,355 @@ img{max-width:100%;display:block}
 
   render();
   spy();
+})();
+</script>
+
+<script>
+/* ============================================================
+   JOURNEY MAP — Sendai → Shanghai → Vancouver → Toronto → Montréal → Vancouver
+   Everything is a pure function of the loop clock, so pausing, jumping and
+   resizing never desynchronise the camera, the trail and the pins.
+   Each move zooms out, travels, and zooms back in.
+   ============================================================ */
+(function(){
+  "use strict";
+  var fig = document.getElementById("journey");
+  if (!fig || !window.HTMLCanvasElement) return;
+
+  var canvas = fig.querySelector("canvas"), ctx = canvas.getContext("2d");
+  var capEl  = fig.querySelector(".journey-cap");
+  var cntEl  = fig.querySelector(".journey-count");
+  var ticksEl= fig.querySelector(".journey-ticks");
+  var toggle = fig.querySelector(".journey-toggle");
+  var calm   = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var C = { water:"#F2F2F0", land:"#FFFFFF", coast:"#CFD1CD", border:"#E2E3DF",
+            ink:"#15171A", slate:"#5F656A", cobalt:"#2C4A5E", paper:"#FCFCFB" };
+
+  /* Longitudes are unwrapped east of Asia, so the Pacific crossing is continuous.
+     w = width of the arrival view in Mercator radians (smaller = closer). */
+  var STOPS = [
+    { label:"Sendai, Japan",   cap:"Sendai, Japan · Born",          lon:140.872, lat:38.268, w:.30 },
+    { label:"Shanghai, China", cap:"Shanghai, China · Grew up",     lon:121.474, lat:31.230, w:.30 },
+    { label:"Vancouver",       cap:"Vancouver · High school",       lon:236.879, lat:49.283, w:.30 },
+    { label:"Toronto",         cap:"Toronto · Undergraduate",       lon:280.617, lat:43.653, w:.13 },
+    { label:"Montréal",   cap:"Montréal · Master’s", lon:286.433, lat:45.502, w:.19  },
+    { label:"Vancouver",       cap:"Vancouver · Medicine",          lon:236.879, lat:49.283, w:.30 }
+  ];
+  var R = Math.PI / 180;
+  function mx(lon){ return lon * R; }
+  function my(lat){ return Math.log(Math.tan(Math.PI / 4 + lat * R / 2)); }
+  STOPS.forEach(function(s){ s.x = mx(s.lon); s.y = my(s.lat); });
+
+  /* ---- Camera path: pull back until both places are in frame, travel, settle in.
+     Zoom runs in log space so it feels even at every scale; the pan happens
+     mostly while pulled back, so the ground never streaks past up close. ---- */
+  function zoomPath(p0, p1){
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1], d = Math.sqrt(dx*dx + dy*dy);
+    var lw0 = Math.log(p0[2]), lw1 = Math.log(p1[2]);
+    var lpk = Math.log(Math.max(p0[2], p1[2], d * 1.45 + .12));
+    var mid = (lw0 + lw1) / 2;
+    function smooth(x){ x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+    var f = function(t){
+      var bump = Math.pow(Math.sin(Math.PI * t), .75);
+      var lw = lw0 + (lw1 - lw0) * smooth(t) + (lpk - mid) * bump;
+      var m = smooth((t - .14) / .72);
+      return [p0[0] + dx * m, p0[1] + dy * m, Math.exp(lw)];
+    };
+    f.S = lpk - Math.min(lw0, lw1);
+    return f;
+  }
+
+  /* ---- Great-circle trail between consecutive stops, in Mercator units ---- */
+  function arc(a, b){
+    function v(s){ var l=s.lon*R, p=s.lat*R; return [Math.cos(p)*Math.cos(l), Math.cos(p)*Math.sin(l), Math.sin(p)]; }
+    var A=v(a), B=v(b), dot=A[0]*B[0]+A[1]*B[1]+A[2]*B[2], om=Math.acos(Math.min(1,dot)), so=Math.sin(om);
+    var pts=[], prev=a.lon, N=72;
+    for (var i=0;i<=N;i++){
+      var t=i/N, ka=Math.sin((1-t)*om)/so, kb=Math.sin(t*om)/so;
+      var x=ka*A[0]+kb*B[0], y=ka*A[1]+kb*B[1], z=ka*A[2]+kb*B[2];
+      var lon=Math.atan2(y,x)/R, lat=Math.asin(z)/R;
+      while (lon - prev > 180) lon -= 360;
+      while (prev - lon > 180) lon += 360;
+      prev = lon; pts.push([mx(lon), my(lat)]);
+    }
+    return pts;
+  }
+
+  /* ---- Timeline: hold at a stop (pin drops), then fly to the next ---- */
+  var HOLD = 1.2, LAST_HOLD = 1.5, DROP = .4;
+  var segs = [], T = 0;
+  STOPS.forEach(function(s, i){
+    var hold = i === STOPS.length - 1 ? LAST_HOLD : HOLD;
+    segs.push({ kind:"hold", i:i, t0:T, d:hold }); T += hold;
+    var n = STOPS[(i + 1) % STOPS.length];
+    var zp = zoomPath([s.x, s.y, s.w], [n.x, n.y, n.w]);
+    var d = Math.max(1.1, Math.min(2.0, .75 + zp.S * .42));
+    segs.push({ kind:"fly", i:i, t0:T, d:d, zp:zp, trail: i < STOPS.length - 1 ? arc(s, n) : null });
+    T += d;
+  });
+  var TOTAL = T;
+
+  function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function easeIO(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
+  function bounce(t){
+    var n=7.5625, d=2.75;
+    if (t < 1/d) return n*t*t;
+    if (t < 2/d) return n*(t-=1.5/d)*t + .75;
+    if (t < 2.5/d) return n*(t-=2.25/d)*t + .9375;
+    return n*(t-=2.625/d)*t + .984375;
+  }
+  function panT(u){ var x = clamp01((u - .14) / .72); return x * x * (3 - 2 * x); }
+  function segAt(t){ for (var k=0;k<segs.length;k++) if (t < segs[k].t0 + segs[k].d) return segs[k]; return segs[segs.length-1]; }
+
+  /* ---- Geometry: decoded once into Path2D objects in Mercator units ---- */
+  var paths = null;
+  function decode(list){
+    var p = new Path2D();
+    list.forEach(function(a){
+      var x=0, y=0;
+      for (var j=0;j<a.length;j+=2){
+        x += a[j]; y += a[j+1];
+        if (j === 0) p.moveTo(x/1e5, y/1e5); else p.lineTo(x/1e5, y/1e5);
+      }
+    });
+    return p;
+  }
+  function build(){
+    var m = window.JOURNEY_MAP;
+    if (!m) return;
+    paths = { land:decode(m.land), lakes:decode(m.lakes), borders:decode(m.borders) };
+    frame();
+  }
+
+  /* ---- Drawing ---- */
+  var W = 0, H = 0, dpr = 1, font = "Inter, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif";
+  function size(){
+    var r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+  }
+
+  function camAt(t){
+    var s = segAt(t);
+    if (s.kind === "hold"){ var p = STOPS[s.i]; return [p.x, p.y, p.w]; }
+    return s.zp(clamp01((t - s.t0) / s.d));
+  }
+
+  function pin(x, y, drop, alpha){
+    /* drop: 0 = still in the air, 1 = landed */
+    var lift = (1 - bounce(drop)) * 46;
+    ctx.save(); ctx.globalAlpha = alpha * clamp01(drop * 5);
+    // ground shadow tightens as the pin lands
+    ctx.fillStyle = "rgba(21,23,26," + (.18 * clamp01(drop * 1.4)) + ")";
+    ctx.beginPath(); ctx.ellipse(x, y, 5 - 2 * (lift / 46), 1.8, 0, 0, Math.PI * 2); ctx.fill();
+    var py = y - lift;
+    ctx.fillStyle = C.cobalt;
+    ctx.beginPath();
+    ctx.moveTo(x, py);
+    ctx.bezierCurveTo(x - 2.2, py - 6, x - 8.5, py - 11.5, x - 8.5, py - 18);
+    ctx.arc(x, py - 18, 8.5, Math.PI, 0);
+    ctx.bezierCurveTo(x + 8.5, py - 11.5, x + 2.2, py - 6, x, py);
+    ctx.fill();
+    ctx.fillStyle = C.paper;
+    ctx.beginPath(); ctx.arc(x, py - 18, 3.1, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  function dot(x, y, alpha){
+    ctx.save(); ctx.globalAlpha = alpha;
+    ctx.fillStyle = C.paper; ctx.beginPath(); ctx.arc(x, y, 4.6, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = C.cobalt; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+  function label(text, x, y, alpha, side, small){
+    ctx.save(); ctx.globalAlpha = alpha;
+    ctx.font = "600 " + (small ? (W < 480 ? 11 : 12.5) : (W < 480 ? 13 : 14.5)) + "px " + font;
+    ctx.textBaseline = "middle"; ctx.textAlign = side < 0 ? "right" : "left";
+    var tx = x + side * (small ? 8 : 15), ty = y - 18;
+    ctx.lineJoin = "round"; ctx.lineWidth = 4; ctx.strokeStyle = C.paper;
+    ctx.strokeText(text, tx, ty);
+    ctx.fillStyle = C.ink; ctx.fillText(text, tx, ty);
+    ctx.restore();
+  }
+
+  var lastCap = -1;
+  /* Reduced motion: one still of the whole route instead of the animation */
+  var OVERVIEW = [3.53, .84, 3.95];
+  var OV_SIDE = [1, -1, -1, -1, 1];          // which side each label sits, so Toronto and Montréal don't collide
+  function drawOverview(){
+    var cam = OVERVIEW, k = Math.min(W / cam[2], H / (cam[2] * .5));
+    function sx(x){ return W / 2 + (x - cam[0]) * k; }
+    function sy(y){ return H / 2 - (y - cam[1]) * k; }
+    baseMap(cam, k);
+    ctx.save(); ctx.strokeStyle = C.cobalt; ctx.lineWidth = 1.6; ctx.setLineDash([5, 5]); ctx.globalAlpha = .75;
+    segs.forEach(function(g){
+      if (g.kind !== "fly" || !g.trail) return;
+      ctx.beginPath();
+      g.trail.forEach(function(q, j){ j ? ctx.lineTo(sx(q[0]), sy(q[1])) : ctx.moveTo(sx(q[0]), sy(q[1])); });
+      ctx.stroke();
+    });
+    ctx.restore();
+    for (var i = 0; i < 5; i++){
+      var x = sx(STOPS[i].x), y = sy(STOPS[i].y);
+      dot(x, y, 1);
+      label(STOPS[i].label, x, y + 18 + (i === 3 ? 12 : i === 4 ? -10 : 0), 1, OV_SIDE[i], true);
+    }
+    capEl.textContent = "Sendai \u2192 Shanghai \u2192 Vancouver \u2192 Toronto \u2192 Montr\u00e9al \u2192 Vancouver";
+    cntEl.textContent = "";
+    tickBtns.forEach(function(b){ b.setAttribute("data-on", "false"); });
+    lastCap = -1;
+  }
+
+  function baseMap(cam, k){
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = C.water; ctx.fillRect(0, 0, W, H);
+    ctx.setTransform(dpr*k, 0, 0, -dpr*k, dpr*(W/2 - cam[0]*k), dpr*(H/2 + cam[1]*k));
+    ctx.fillStyle = C.land;  ctx.fill(paths.land);
+    ctx.fillStyle = C.water; ctx.fill(paths.lakes, "evenodd");
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 1 / k; ctx.strokeStyle = C.border; ctx.stroke(paths.borders);
+    ctx.lineWidth = .8 / k; ctx.strokeStyle = C.coast;
+    ctx.stroke(paths.land); ctx.stroke(paths.lakes);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(t){
+    if (!paths || !W) return;
+    if (still) return drawOverview();
+    var cam = camAt(t);
+    /* Fit a 2:1 box of width cam[2] inside the canvas, whatever its shape */
+    var k = Math.min(W / cam[2], H / (cam[2] * .5));
+    function sx(x){ return W / 2 + (x - cam[0]) * k; }
+    function sy(y){ return H / 2 - (y - cam[1]) * k; }
+
+    baseMap(cam, k);
+
+    var s = segAt(t), u = clamp01((t - s.t0) / s.d);
+    var current = s.i;                                   // stop we are at, or leaving
+    var returning = s.kind === "fly" && s.i === STOPS.length - 1;
+    var fade = returning ? 1 - clamp01(u * 1.6) : 1;     // everything clears on the way home
+
+    /* Trail */
+    ctx.save();
+    ctx.strokeStyle = C.cobalt; ctx.lineWidth = 1.6; ctx.setLineDash([5, 5]);
+    ctx.lineCap = "round"; ctx.globalAlpha = .75 * fade;
+    segs.forEach(function(g){
+      if (g.kind !== "fly" || !g.trail) return;
+      var f = g.t0 + g.d <= t ? 1 : (g === s ? panT(u) : 0);
+      if (returning) f = 1;
+      if (f <= 0) return;
+      var pts = g.trail, n = (pts.length - 1) * f, whole = Math.floor(n);
+      ctx.beginPath(); ctx.moveTo(sx(pts[0][0]), sy(pts[0][1]));
+      for (var j = 1; j <= whole; j++) ctx.lineTo(sx(pts[j][0]), sy(pts[j][1]));
+      if (whole < pts.length - 1){
+        var a = pts[whole], b = pts[whole + 1], r = n - whole;
+        ctx.lineTo(sx(a[0] + (b[0]-a[0])*r), sy(a[1] + (b[1]-a[1])*r));
+      }
+      ctx.stroke();
+    });
+    ctx.restore();
+
+    /* Earlier stops shrink to dots */
+    for (var i = 0; i < current; i++) dot(sx(STOPS[i].x), sy(STOPS[i].y), fade);
+
+    /* Current stop: the pin drops on arrival, then shrinks as we leave */
+    var p = STOPS[current], px = sx(p.x), py = sy(p.y);
+    var side = px > W - 170 ? -1 : 1;
+    if (s.kind === "hold"){
+      var lt = t - s.t0;
+      var drop = calm ? 1 : clamp01(lt / DROP);
+      // a quiet ring where it lands
+      var ring = clamp01((lt - DROP * .55) / .55);
+      if (!calm && ring > 0 && ring < 1){
+        ctx.save(); ctx.globalAlpha = .35 * (1 - ring); ctx.strokeStyle = C.cobalt; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.ellipse(px, py, 4 + ring * 20, (4 + ring * 20) * .45, 0, 0, Math.PI*2); ctx.stroke();
+        ctx.restore();
+      }
+      pin(px, py, drop, 1);
+      label(p.label, px, py, calm ? 1 : clamp01((lt - DROP * .6) / .2), side);
+    } else {
+      var leave = clamp01(u / .22);
+      dot(px, py, fade * leave);
+      pin(px, py, 1, 1 - leave);
+      label(p.label, px, py, 1 - clamp01(u / .12), side);
+    }
+
+    /* Caption + ticks follow the stop you are at, or heading to */
+    var capIdx = s.kind === "hold" ? s.i : (u < .5 ? s.i : (s.i + 1) % STOPS.length);
+    if (capIdx !== lastCap){
+      lastCap = capIdx;
+      capEl.textContent = STOPS[capIdx].cap;
+      cntEl.textContent = "0" + (capIdx + 1) + " / 0" + STOPS.length;
+      tickBtns.forEach(function(b, n){ b.setAttribute("data-on", String(n === capIdx)); });
+    }
+  }
+
+  /* ---- Controls: ticks jump to a stop, the button pauses ---- */
+  var tickBtns = STOPS.map(function(s, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "tick";
+    b.setAttribute("aria-label", "Show " + s.cap.replace(" · ", ", "));
+    b.addEventListener("click", function(){
+      still = false;
+      clock = segs[i * 2].t0 + (calm || paused ? DROP + .4 : 0);
+      frame();
+    });
+    ticksEl.appendChild(b);
+    return b;
+  });
+
+  var PAUSE = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1.5v7M7 1.5v7" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>';
+  var PLAY  = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 1.2v7.6L8.8 5z" fill="currentColor"/></svg>';
+  var paused = calm, clock = 0, last = 0, raf = 0, visible = false;
+  function setBtn(){
+    toggle.innerHTML = paused ? PLAY : PAUSE;
+    toggle.setAttribute("aria-label", paused ? "Play map animation" : "Pause map animation");
+  }
+  toggle.addEventListener("click", function(){
+    paused = !paused;
+    if (!paused){ calm = false; still = false; }   // an explicit Play overrides the reduced-motion default
+    setBtn(); frame(); kick();
+  });
+
+  function frame(){ draw(clock % TOTAL); }
+  fig.journeySeek = function(t){ paused = true; still = t < 0; if (still) t = 0; setBtn(); clock = t; frame(); return TOTAL; };
+  function loop(now){
+    raf = 0;
+    if (paused || !visible || document.hidden || !paths) return;
+    if (last) clock += Math.min(.1, (now - last) / 1000);
+    last = now;
+    frame();
+    raf = requestAnimationFrame(loop);
+  }
+  function kick(){ last = 0; if (!raf) raf = requestAnimationFrame(loop); }
+
+  var still = calm;                          // reduced motion: overview until Play is pressed
+  setBtn();
+
+  /* ---- Load geometry only when the map is about to be seen ---- */
+  var requested = false;
+  function load(){
+    if (requested) return; requested = true;
+    var sc = document.createElement("script");
+    sc.src = "scripts/journey-map-data.js";
+    sc.onload = function(){ (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(build); };
+    document.head.appendChild(sc);
+  }
+
+  function resize(){ size(); frame(); }
+  if ("ResizeObserver" in window) new ResizeObserver(resize).observe(canvas);
+  else window.addEventListener("resize", resize);
+  size();
+
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ if (es[0].isIntersecting) load(); }, { rootMargin:"900px 0px" }).observe(fig);
+    new IntersectionObserver(function(es){
+      visible = es[0].isIntersecting;
+      if (visible){ size(); frame(); kick(); }
+    }, { threshold:.15 }).observe(fig);
+  } else { load(); visible = true; }
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) kick(); });
 })();
 </script>
 </body>
