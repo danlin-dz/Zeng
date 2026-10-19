@@ -421,13 +421,6 @@ img{max-width:100%;display:block}
 }
 .slide--empty img,.slide--empty video{display:none}
 
-.clip-badge{
-  position:absolute;top:.7rem;left:.7rem;z-index:3;
-  font-family:var(--body);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--paper);border:1px solid rgba(244,245,247,.35);border-radius:2px;padding:.16rem .4rem;
-  opacity:0;transition:opacity .3s ease;
-}
-.slide[data-on="true"] .clip-badge{opacity:1}
 
 /* Tick rail — one per slide, doubles as the jump control */
 .ticks{display:flex;gap:.4rem;margin-top:.9rem}
@@ -1430,21 +1423,18 @@ img{max-width:100%;display:block}
         <div class="slideshow" aria-label="Dive clips">
           <div class="stage">
             <div class="slide" data-cap="Whale shark &middot; Koh Tao, Thailand" data-file="videos/dive-clip-1.mp4">
-              <span class="clip-badge">Loop</span>
               <video muted loop playsinline preload="metadata" poster="images/poster-1.jpg">
                 <source src="videos/dive-clip-1.mp4" type="video/mp4">
                 <source src="videos/dive-clip-1.webm" type="video/webm">
               </video>
             </div>
             <div class="slide" data-cap="Whale shark from below &middot; Koh Tao, Thailand" data-file="videos/dive-clip-2.mp4">
-              <span class="clip-badge">Loop</span>
               <video muted loop playsinline preload="metadata" poster="images/poster-2.jpg">
                 <source src="videos/dive-clip-2.mp4" type="video/mp4">
                 <source src="videos/dive-clip-2.webm" type="video/webm">
               </video>
             </div>
             <div class="slide" data-cap="Green sea turtle &middot; Hawaii" data-file="videos/dive-clip-3.mp4">
-              <span class="clip-badge">Loop</span>
               <video muted loop playsinline preload="metadata" poster="images/poster-3.jpg">
                 <source src="videos/dive-clip-3.mp4" type="video/mp4">
                 <source src="videos/dive-clip-3.webm" type="video/webm">
@@ -1533,7 +1523,6 @@ img{max-width:100%;display:block}
         <div class="slideshow slideshow--tall" aria-label="Running clips">
           <div class="stage">
             <div class="slide" data-cap="Waterfront run, New York" data-file="videos/run-clip-1.mp4">
-              <span class="clip-badge">Loop</span>
               <video muted loop playsinline preload="metadata" poster="images/poster-run-1.jpg">
                 <source src="videos/run-clip-1.mp4" type="video/mp4">
                 <source src="videos/run-clip-1.webm" type="video/webm">
@@ -1940,8 +1929,8 @@ img{max-width:100%;display:block}
   /* Longitudes are unwrapped east of Asia, so the Pacific crossing is continuous.
      w = width of the arrival view in Mercator radians (smaller = closer). */
   var STOPS = [
-    { label:"Sendai, Japan",   cap:"Sendai, Japan · Born",          lon:140.872, lat:38.268, w:.30 },
-    { label:"Shanghai, China", cap:"Shanghai, China · Grew up",     lon:121.474, lat:31.230, w:.30 },
+    { label:"Sendai, Japan",   cap:"Sendai, Japan · Where I was born",          lon:140.872, lat:38.268, w:.30 },
+    { label:"Shanghai, China", cap:"Shanghai, China · Where I grew up",     lon:121.474, lat:31.230, w:.30 },
     { label:"Vancouver",       cap:"Vancouver · High school",       lon:236.879, lat:49.283, w:.30 },
     { label:"Toronto",         cap:"Toronto · Undergraduate",       lon:280.617, lat:43.653, w:.13 },
     { label:"Montréal",   cap:"Montréal · Master’s", lon:286.433, lat:45.502, w:.19  },
@@ -2031,6 +2020,7 @@ img{max-width:100%;display:block}
     if (!m) return;
     paths = { land:decode(m.land), lakes:decode(m.lakes), borders:decode(m.borders) };
     frame();
+    kick();   // the map may have scrolled into view before the data arrived
   }
 
   /* ---- Drawing ---- */
