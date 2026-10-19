@@ -175,7 +175,7 @@ img{max-width:100%;display:block}
    CV
    ============================================================ */
 .cv-head{padding-block:clamp(2.4rem,5.6vw,4.4rem) 1.6rem;border-bottom:1px solid var(--rule)}
-.cv-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-0.04em}
+.cv-title{font-size:clamp(1.92rem,4.8vw,3.2rem);font-weight:700;letter-spacing:-0.04em}
 .cv-actions{margin:.88rem 0 0}
 .print-head{display:none}
 .dl{
@@ -187,14 +187,14 @@ img{max-width:100%;display:block}
 .dl:hover{border-color:var(--ink)}
 .dl svg{width:14px;height:14px;flex:none}
 
-.cv-body{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(1.6rem,4vw,3.6rem);
+.cv-body{display:grid;grid-template-columns:196px minmax(0,1fr);gap:clamp(1.6rem,4vw,2.6rem);
   padding-block:clamp(1.6rem,3.2vw,2.4rem) 4.8rem}
 
 /* Sticky section rail with scroll spy */
 .rail{position:sticky;top:calc(var(--bar) + 2.4rem);align-self:start}
 .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.1rem}
 .rail a{
-  display:block;padding:.5rem 0 .5rem .85rem;text-decoration:none;color:var(--slate);
+  display:block;padding:.5rem 0 .5rem .85rem;text-decoration:none;color:#4A4F54;
   font-family:var(--body);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;
   border-left:2px solid var(--rule);transition:.2s ease;
 }
@@ -250,7 +250,7 @@ img{max-width:100%;display:block}
 .doi:hover{border-bottom:2px solid var(--fluor)}
 .tag{
   font-family:var(--body);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--slate);border:1px solid var(--rule);border-radius:2px;padding:.15rem .45rem;
+  color:#3F4448;border:1px solid #C9CCCE;border-radius:2px;padding:.15rem .45rem;
   background:var(--card);
 }
 /* Must come AFTER .tag — same specificity, so source order decides. Inverted
@@ -293,6 +293,7 @@ img{max-width:100%;display:block}
 .row-where{color:var(--slate);margin:.2rem 0 0;font-size:.98rem}
 .row-note{margin:.4rem 0 0;font-size:.95rem;max-width:var(--measure)}
 .row-note--tight{margin-top:.12rem}
+/* A single-line title is not prose, so the reading measure does not apply. */
 /* Description lines are bulleted wherever the Word CV bullets them. Awards
    stay plain — there the line qualifies the award rather than listing work —
    and Skills are category rows, not descriptions. */
@@ -301,6 +302,9 @@ img{max-width:100%;display:block}
   content:"\2022";position:absolute;left:0;color:var(--slate);
 }
 #page-cv .row-note,#page-cv .cite-text{max-width:72ch}
+/* A single-line title is not prose, so the reading measure does not apply.
+   Must sit AFTER the rule above: same specificity, so order decides. */
+#page-cv .row-note--wide{max-width:none}
 
 /* Films */
 .films{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem;margin-top:1.6rem}
@@ -351,7 +355,7 @@ img{max-width:100%;display:block}
 .hobby--joined{border-top:0;padding-top:1.25rem}
 .hobby-title--lg{font-size:clamp(2rem,3.8vw,2.7rem)}
 .hobby-title{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:600;letter-spacing:-0.03em;margin:.7rem 0 .9rem}
-.hobby-copy{margin:0;max-width:48ch;color:var(--ink)}
+.hobby-copy{margin:0;max-width:72ch;color:var(--ink)}
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
 .mailto{
@@ -386,7 +390,7 @@ img{max-width:100%;display:block}
 .portrait .frame{aspect-ratio:3/4}
 
 /* ---- Paired slideshows: stills in one, clips in the other ---- */
-.hobby-head{max-width:60ch}
+.hobby-head{max-width:72ch}
 .shows{
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(1.25rem,3vw,2.25rem);margin-top:clamp(1.75rem,4vw,2.5rem);align-items:start;
@@ -589,7 +593,7 @@ img{max-width:100%;display:block}
         <a role="menuitem" href="#cv/awards">Awards</a>
         <a role="menuitem" href="#cv/research">Publications</a>
         <a role="menuitem" href="#cv/presentations">Presentations</a>
-        <a role="menuitem" href="#cv/experience">Research experience</a>
+        <a role="menuitem" href="#cv/experience">Research experiences</a>
         <a role="menuitem" href="#cv/outreach">Outreach</a>
         <a role="menuitem" href="#cv/skills">Skills</a>
       </div>
@@ -656,7 +660,7 @@ img{max-width:100%;display:block}
           <li><a href="#cv/awards" data-spy="awards">Awards</a></li>
           <li><a href="#cv/research" data-spy="research">Publications</a></li>
           <li><a href="#cv/presentations" data-spy="presentations">Presentations</a></li>
-          <li><a href="#cv/experience" data-spy="experience">Research experience</a></li>
+          <li><a href="#cv/experience" data-spy="experience">Research experiences</a></li>
           <li><a href="#cv/outreach" data-spy="outreach">Outreach</a></li>
           <li><a href="#cv/skills" data-spy="skills">Skills</a></li>
         </ol>
@@ -680,7 +684,7 @@ img{max-width:100%;display:block}
                 <div>
                   <div class="row-what">Master of Science, Biochemistry</div>
                   <p class="row-where">McGill University, Montr&eacute;al, QC &middot; Supervisor: Dr. Morag Park</p>
-                  <p class="row-note">Thesis: Targeting chemotherapy-induced senescence escape to reduce breast cancer cell survival</p>
+                  <p class="row-note row-note--wide">Thesis: Targeting chemotherapy-induced senescence escape to reduce breast cancer cell survival</p>
                 </div>
               </li>
               <li class="row">
@@ -1043,7 +1047,7 @@ img{max-width:100%;display:block}
         </section>
 
         <section class="sec" id="experience">
-          <h2 class="sec-title">Research experience</h2>
+          <h2 class="sec-title">Research experiences</h2>
 
           <div class="sub">
             <h3 class="sub-title">Ophthalmology</h3>
@@ -1492,7 +1496,7 @@ img{max-width:100%;display:block}
       <div class="hobby-head">
         <span class="label">On land</span>
         <h2 class="hobby-title">Running</h2>
-        <p class="hobby-copy">I started running in 2023, my first year of medical school. I trained by setting consistent time goals, and challenged myself to run even on the days I felt unmotivated.</p>
+        <p class="hobby-copy">I started running in 2023, my first year of medical school, because of my classmates. I trained by setting consistent time goals, and challenged myself to run even on the days I felt unmotivated.</p>
         <p class="hobby-copy" style="margin-top:.9rem">Running is honest about whether the work went in.</p>
       </div>
 
