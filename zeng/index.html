@@ -174,9 +174,9 @@ img{max-width:100%;display:block}
 /* ============================================================
    CV
    ============================================================ */
-.cv-head{padding-block:clamp(3rem,7vw,5.5rem) 2rem;border-bottom:1px solid var(--rule)}
+.cv-head{padding-block:clamp(2.4rem,5.6vw,4.4rem) 1.6rem;border-bottom:1px solid var(--rule)}
 .cv-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-0.04em}
-.cv-actions{margin:1.1rem 0 0}
+.cv-actions{margin:.88rem 0 0}
 .print-head{display:none}
 .dl{
   display:inline-flex;align-items:center;gap:.5rem;
@@ -187,8 +187,8 @@ img{max-width:100%;display:block}
 .dl:hover{border-color:var(--ink)}
 .dl svg{width:14px;height:14px;flex:none}
 
-.cv-body{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem);
-  padding-block:clamp(2rem,4vw,3rem) 6rem}
+.cv-body{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(1.6rem,4vw,3.6rem);
+  padding-block:clamp(1.6rem,3.2vw,2.4rem) 4.8rem}
 
 /* Sticky section rail with scroll spy */
 .rail{position:sticky;top:calc(var(--bar) + 2.4rem);align-self:start}
@@ -202,30 +202,30 @@ img{max-width:100%;display:block}
 .rail a[data-here="true"]{color:var(--ink);border-left-color:var(--fluor)}
 
 /* Section */
-.sec{scroll-margin-top:calc(var(--bar) + 1.5rem);padding-bottom:clamp(3rem,6vw,5rem)}
+.sec{scroll-margin-top:calc(var(--bar) + 1.5rem);padding-bottom:clamp(2.4rem,4.8vw,4rem)}
 .sec-title{
   font-size:clamp(1.7rem,3.4vw,2.35rem);font-weight:600;letter-spacing:-0.03em;
-  padding-bottom:.7rem;border-bottom:2px solid var(--ink);margin-bottom:.4rem;
+  padding-bottom:.56rem;border-bottom:2px solid var(--ink);margin-bottom:.32rem;
 }
-.sec-note{color:var(--slate);font-size:.95rem;margin:.9rem 0 2rem;max-width:var(--measure)}
+.sec-note{color:var(--slate);font-size:.95rem;margin:.72rem 0 1.6rem;max-width:var(--measure)}
 
-.sub{margin-top:2.6rem}
-.sub:first-of-type{margin-top:2rem}
+.sub{margin-top:2.08rem}
+.sub:first-of-type{margin-top:1.6rem}
 /* whatever follows a section heading sits at one consistent distance */
 .sec-title + .sub,
 .sec-title + .sec-note,
-.sec-title + .rows{margin-top:1.6rem}
-.sub-note{margin:.85rem 0 0;color:var(--slate);font-size:.95rem}
+.sec-title + .rows{margin-top:1.28rem}
+.sub-note{margin:.68rem 0 0;color:var(--slate);font-size:.95rem}
 .sub-title{
   font-family:var(--body);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--slate);padding-bottom:.55rem;border-bottom:1px solid var(--rule);margin-bottom:.3rem;
+  color:var(--slate);padding-bottom:.44rem;border-bottom:1px solid var(--rule);margin-bottom:.24rem;
 }
 
 /* Citation list */
 .cites{list-style:none;margin:0;padding:0;counter-reset:cite}
 .cites > li{
-  display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:.9rem;
-  padding:1.05rem 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:.72rem;
+  padding:.84rem 0;border-bottom:1px solid var(--rule);
 }
 .cites > li::before{
   counter-increment:cite;content:counter(cite,decimal-leading-zero);
@@ -236,12 +236,12 @@ img{max-width:100%;display:block}
 .cite-text em{color:var(--slate)}
 .cite-you{font-weight:600}
 .cite-pres{text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
-.venues{list-style:none;margin:.5rem 0 0;padding:0 0 0 .9rem;border-left:1px solid var(--rule)}
-.venues li{font-size:.93rem;color:var(--slate);padding:.2rem 0;line-height:1.5}
+.venues{list-style:none;margin:.4rem 0 0;padding:0 0 0 .72rem;border-left:1px solid var(--rule)}
+.venues li{font-size:.93rem;color:var(--slate);padding:.16rem 0;line-height:1.5}
 .venues .tag{margin-left:.35rem;white-space:nowrap}
 .venues em{font-style:italic;color:var(--ink)}
 .venues a.doi{font-size:inherit}
-.cite-tail{margin:.45rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem .95rem;align-items:baseline}
+.cite-tail{margin:.36rem 0 0;display:flex;flex-wrap:wrap;gap:.32rem .76rem;align-items:baseline}
 .doi{
   font-family:var(--body);font-size:.82rem;letter-spacing:0;color:var(--cobalt);
   text-decoration:none;border-bottom:1px solid rgba(27,59,168,.28);
@@ -264,8 +264,8 @@ img{max-width:100%;display:block}
 /* Education / experience rows */
 .rows{margin:0;padding:0;list-style:none}
 .row{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1.5rem;
-  padding:1.2rem 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1.2rem;
+  padding:.96rem 0;border-bottom:1px solid var(--rule);
 }
 /* The body wrapper steps aside so its children join the row's grid: title
    beside the date, then everything else spanning the full width beneath. */
@@ -290,9 +290,9 @@ img{max-width:100%;display:block}
 .embed iframe{width:100%;height:100%;border:0;display:block}
 .row-link{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .row-link:hover{border-bottom-color:var(--cobalt)}
-.row-where{color:var(--slate);margin:.25rem 0 0;font-size:.98rem}
-.row-note{margin:.5rem 0 0;font-size:.95rem;max-width:var(--measure)}
-.row-note--tight{margin-top:.15rem}
+.row-where{color:var(--slate);margin:.2rem 0 0;font-size:.98rem}
+.row-note{margin:.4rem 0 0;font-size:.95rem;max-width:var(--measure)}
+.row-note--tight{margin-top:.12rem}
 /* Description lines are bulleted wherever the Word CV bullets them. Awards
    stay plain — there the line qualifies the award rather than listing work —
    and Skills are category rows, not descriptions. */
