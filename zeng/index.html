@@ -360,6 +360,8 @@ img{max-width:100%;display:block}
 .hobby-copy{margin:0;max-width:72ch;color:var(--ink);text-wrap:pretty}
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
+.mail-inline{white-space:nowrap}
+.mail-inline .mail-ico{margin-right:.35em}
 .mailto{
   font-size:1.05rem;color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--rule);padding-bottom:.18rem;
@@ -534,30 +536,38 @@ img{max-width:100%;display:block}
    ============================================================ */
 #page-home{
   background:#B7ABA6 url(images/home-sunset.jpg) no-repeat;
-  background-size:cover;
-  /* Landscape screens: the photo fills the width and the bottom of the
-     screen sits just below the waterline, leaving a thin strip of water.
-     14.95vw = the 212px of photo below that point, at full-width scale. */
-  background-position:left 50% bottom -14.95vw;
+  /* Landscape screens: the photo fills the width, starting 101px in so the
+     pier building at its left edge stays out of frame (1317px of the 1418
+     are shown). The bottom of the screen sits just below the waterline,
+     leaving a thin strip of water: 27.03vw = the 356px of photo below it. */
+  background-size:107.67vw auto;
+  background-position:left -7.67vw bottom -27.03vw;
 }
 /* Text sits in the sky; the bottom padding keeps it clear of the bridge and
-   hills, which rise 18.7vw above the bottom of the screen. */
+   hills, which rise 20.1vw above the bottom of the screen. */
 #page-home .hero{
   grid-template-columns:minmax(0,1fr);
   grid-template-rows:auto auto;
   align-content:center;row-gap:0;
-  padding-block:clamp(2rem,6vh,4rem) calc(18.7vw + clamp(1.5rem,4vh,3rem));
+  padding-block:clamp(3rem,11vh,6.5rem) calc(20.1vw + clamp(1.5rem,4vh,3rem));
 }
 #page-home .hero-main{grid-row:1;align-self:auto}
-#page-home .hero-links{grid-row:2;align-self:auto;border-top:0;padding-top:clamp(1.2rem,3vh,1.9rem)}
+#page-home .hero-name{font-size:clamp(3rem,7vw,5.6rem)}
+#page-home .hero-line{margin-top:clamp(1.85rem,4.2vw,2.85rem)}
+#page-home .hero-links{grid-row:2;align-self:auto;border-top:0;padding-top:clamp(2.15rem,6.2vh,3.8rem)}
 
 /* Portrait screens (phones): the whole height shows, from the top of the sky
    to halfway down the water; the text stacks close together near the top. */
 @media (orientation:portrait){
-  #page-home{background-position:13.7% 0}
-  #page-home .hero{align-content:start;padding-block:13vh 2rem}
-  #page-home .hero-line{margin-top:1rem}
-  #page-home .hero-links{padding-top:1.3rem}
+  /* The screen shows 1623px of the photo's height: from 144px below the top
+     of the sky to the bottom of the file (70% of the water kept). It starts
+     101px in from the left, just past the pier building. */
+  #page-home{background-size:auto 108.87svh;background-position:left -6.22svh bottom 0}
+  #page-home .hero-name{font-size:clamp(3rem,8.4vw,6.75rem)}
+  /* centred in the sky: the hills start 38% up from the bottom of the screen */
+  #page-home .hero{align-content:center;padding-block:1.5rem calc(38.3svh + 2rem)}
+  #page-home .hero-line{margin-top:2.05rem}
+  #page-home .hero-links{padding-top:2.3rem}
 }
 
 /* ============================================================
@@ -1503,17 +1513,14 @@ img{max-width:100%;display:block}
             <div class="slide" data-cap="Ha Giang, Vietnam" data-file="images/photo-vietnam-buffalo.jpg">
               <img src="images/photo-vietnam-buffalo.jpg" alt="Water buffalo grazing below limestone karst peaks" loading="lazy">
             </div>
-            <div class="slide" data-cap="Shanghai, China" data-file="images/photo-yugarden.jpg">
-              <img src="images/photo-yugarden.jpg" alt="Illuminated upswept eaves of traditional Chinese architecture at night" loading="lazy">
-            </div>
             <div class="slide" data-cap="Vancouver, Canada" data-file="images/photo-lake.jpg">
               <img src="images/photo-lake.jpg" alt="Snow-covered evergreens reflected in a still lake under a pink and lavender sunrise sky" loading="lazy">
             </div>
             <div class="slide" data-cap="Pokhara, Nepal" data-file="images/photo-pokhara.jpg">
               <img src="images/photo-pokhara.jpg" alt="Rowing boats on a lake below mist-covered hills" loading="lazy">
             </div>
-            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-harbour.jpg">
-              <img src="images/photo-ny-harbour.jpg" alt="Masts and the skyline at sunset across the water" loading="lazy">
+            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-greenway.jpg">
+              <img src="images/photo-ny-greenway.jpg" alt="Tree-lined riverside bike path leading toward One World Trade Center" loading="lazy">
             </div>
           </div>
         </div>
@@ -1570,8 +1577,7 @@ img{max-width:100%;display:block}
       <div class="hobby-grid">
         <div class="hobby-text">
           <h2 class="hobby-title hobby-title--lg">Say hello</h2>
-          <p class="hobby-copy">Happy to chat about my <a href="#cv/research">research</a>, <a href="#cv/outreach">community work</a>, and/or life.</p>
-          <p style="margin:1.5rem 0 0"><a class="mailto" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a></p>
+          <p class="hobby-copy"><a class="mail-inline" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a> to chat about my <a href="#cv/research">research</a>, <a href="#cv/outreach">community work</a>, or life.</p>
         </div>
         <div class="hobby-text">
           <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
