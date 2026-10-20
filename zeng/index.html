@@ -525,6 +525,8 @@ body:has(#page-home[data-active="true"]) .bar{
 }
 @media (max-width:620px){
   body{font-size:16px}
+  /* Phones: a plain white top bar on every page, home included */
+  .bar,body:has(#page-home[data-active="true"]) .bar{background:#FCFCFB;border-bottom-color:var(--rule)}
   /* thumb-sized hit areas: these links are only ~23px tall otherwise */
   .doi,.row-link,.hobby-copy a{display:inline-block;padding-block:.45rem}
   #hello .hobby-copy a{display:inline;padding-block:0}
