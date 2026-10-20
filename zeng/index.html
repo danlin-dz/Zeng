@@ -2060,14 +2060,21 @@ img{max-width:100%;display:block}
     ctx.fillStyle = C.cobalt; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI*2); ctx.fill();
     ctx.restore();
   }
-  function label(text, x, y, alpha, side, small){
+  function label(text, x, y, alpha, side, small, sub){
     ctx.save(); ctx.globalAlpha = alpha;
     ctx.font = "600 " + (small ? (W < 480 ? 11 : 12.5) : (W < 480 ? 13 : 14.5)) + "px " + font;
     ctx.textBaseline = "middle"; ctx.textAlign = side < 0 ? "right" : "left";
     var tx = x + side * (small ? 8 : 15), ty = y - 18;
     ctx.lineJoin = "round"; ctx.lineWidth = 4; ctx.strokeStyle = C.paper;
+    if (sub) ty -= 8;                      // two lines: centre the pair on the pin head
     ctx.strokeText(text, tx, ty);
     ctx.fillStyle = C.ink; ctx.fillText(text, tx, ty);
+    if (sub){
+      ctx.font = "400 " + (W < 480 ? 12 : 13.5) + "px " + font;
+      ty += W < 480 ? 16 : 18;
+      ctx.strokeText(sub, tx, ty);
+      ctx.fillStyle = C.slate; ctx.fillText(sub, tx, ty);
+    }
     ctx.restore();
   }
 
@@ -2165,12 +2172,12 @@ img{max-width:100%;display:block}
         ctx.restore();
       }
       pin(px, py, drop, 1);
-      label(p.label, px, py, calm ? 1 : clamp01((lt - DROP * .6) / .2), side);
+      label(p.label, px, py, calm ? 1 : clamp01((lt - DROP * .6) / .2), side, false, p.cap.split(" \u00b7 ")[1]);
     } else {
       var leave = clamp01(u / .22);
       dot(px, py, fade * leave);
       pin(px, py, 1, 1 - leave);
-      label(p.label, px, py, 1 - clamp01(u / .12), side);
+      label(p.label, px, py, 1 - clamp01(u / .12), side, false, p.cap.split(" \u00b7 ")[1]);
     }
 
     /* Caption + ticks follow the stop you are at, or heading to */
