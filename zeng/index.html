@@ -92,6 +92,21 @@ img{max-width:100%;display:block}
 body:has(#page-home[data-active="true"]) .bar{
   background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent;
 }
+/* Desktop: the name and tabs line up with the page content column */
+@media (min-width:621px){
+  .bar{
+    padding-left:calc(max(0px,(100% - 1180px)/2) + var(--gutter));
+    padding-right:calc(max(0px,(100% - 1180px)/2) + var(--gutter) - .7rem);
+  }
+}
+/* Desktop, CV and About: peach bar with a raised look */
+@media (min-width:621px){
+  body:not(:has(#page-home[data-active="true"])) .bar{
+    background:linear-gradient(180deg,#F1DCC6 0%,#ECD3B9 60%,#E6CAAE 100%);
+    border-bottom-color:#D9BE9F;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 14px -6px rgba(90,60,30,.35),0 1px 2px rgba(90,60,30,.18);
+  }
+}
 .wordmark{
   font-family:var(--body);font-weight:600;font-size:1rem;
   letter-spacing:.005em;text-decoration:none;
@@ -367,6 +382,7 @@ body:has(#page-home[data-active="true"]) .bar{
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
 .mail-inline,.nowrap{white-space:nowrap}
+.hello-block{margin-top:clamp(2rem,5vw,3rem)}
 .mail-inline .mail-ico{margin-right:.35em}
 .mailto{
   font-size:1.05rem;color:var(--ink);text-decoration:none;
@@ -512,12 +528,6 @@ body:has(#page-home[data-active="true"]) .bar{
   .rail a{border-left:0;border-bottom:2px solid var(--rule);padding:.35rem .1rem}
   .rail a[data-here="true"]{border-bottom-color:var(--fluor)}
   .hobby-grid{grid-template-columns:1fr}
-  /* About, stacked: birthplace paragraph, then the map, then "Say hello" */
-  #hello{display:flex;flex-direction:column}
-  #hello .hobby-grid{display:contents}
-  #hello .hobby-grid>.hobby-text:nth-child(2){order:1}
-  #hello .journey{order:2}
-  #hello .hobby-grid>.hobby-text:nth-child(1){order:3;margin-top:clamp(2rem,5vw,3rem)}
   .hobby--flip .hobby-text{order:0}
   .shows{grid-template-columns:1fr}
   .stage{aspect-ratio:4/3}
@@ -525,8 +535,8 @@ body:has(#page-home[data-active="true"]) .bar{
 }
 @media (max-width:620px){
   body{font-size:16px}
-  /* Phones: a plain white top bar on every page, home included */
-  .bar,body:has(#page-home[data-active="true"]) .bar{background:#FCFCFB;border-bottom-color:var(--rule)}
+  /* Phones: white top bar on the CV and About pages; Home keeps its clear bar over the photo */
+  .bar{background:#FCFCFB;border-bottom-color:var(--rule)}
   /* thumb-sized hit areas: these links are only ~23px tall otherwise */
   .doi,.row-link,.hobby-copy a{display:inline-block;padding-block:.45rem}
   #hello .hobby-copy a{display:inline;padding-block:0}
@@ -1595,14 +1605,9 @@ body:has(#page-home[data-active="true"]) .bar{
 
     <!-- PORTRAIT -->
     <section class="hobby" id="hello">
-      <div class="hobby-grid">
-        <div class="hobby-text">
-          <h2 class="hobby-title hobby-title--lg">Say hello</h2>
-          <p class="hobby-copy"><a class="mail-inline" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a> to chat about my <span class="nowrap"><a href="#cv/research">research</a>,</span> <span class="nowrap"><a href="#cv/outreach">community work</a>,</span> or life.</p>
-        </div>
-        <div class="hobby-text">
-          <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
-        </div>
+      <div class="hobby-text">
+        <h2 class="hobby-title hobby-title--lg">About me</h2>
+        <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
       </div>
 
       <figure class="journey" id="journey">
@@ -1618,6 +1623,11 @@ body:has(#page-home[data-active="true"]) .bar{
           </div>
         </div>
       </figure>
+
+      <div class="hobby-text hello-block">
+        <h2 class="hobby-title hobby-title--lg">Say hello</h2>
+        <p class="hobby-copy"><a class="mail-inline" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a> to chat about my <span class="nowrap"><a href="#cv/research">research</a>,</span> <span class="nowrap"><a href="#cv/outreach">community work</a>,</span> or life.</p>
+      </div>
     </section>
 
     <div class="foot">
