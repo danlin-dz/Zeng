@@ -110,7 +110,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   }
 }
 .wordmark{
-  font-family:var(--body);font-weight:500;font-size:1rem;
+  font-family:var(--body);font-weight:600;font-size:1.125rem;
   letter-spacing:.005em;text-decoration:none;
 }
 .nav{display:flex;align-items:center;gap:.35rem}
@@ -546,7 +546,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   #hello .hobby-copy a{display:inline;padding-block:0}
   .menu a{padding-block:.85rem}
   .rail a{padding-block:.6rem}
-  .wordmark{font-size:.8rem;padding-block:.5rem}
+  .wordmark{font-size:1.0625rem;padding-block:.5rem}
   .foot-mail{display:inline-block;padding-block:.35rem}
   .slink,.mailto{display:inline-block;padding-block:.5rem}
   .nav-link{padding:.85rem .5rem;font-size:.68rem;letter-spacing:.1em}
@@ -604,6 +604,8 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   #page-home .hero-line{margin-top:1.45rem}
   #page-home .hero-links{padding-top:1.6rem}
 }
+
+@media (max-width:360px){ .wordmark{font-size:.9rem} .venues .tag{white-space:normal} }
 
 /* ============================================================
    MOTION & PRINT
