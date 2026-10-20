@@ -703,6 +703,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
         <a role="menuitem" href="#about/scuba">Scuba diving</a>
         <a role="menuitem" href="#about/photography">Photography</a>
         <a role="menuitem" href="#about/running">Running</a>
+        <a role="menuitem" href="#about/hello">About me</a>
       </div>
     </div>
   </nav>
@@ -1894,12 +1895,15 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   document.querySelectorAll(".slideshow").forEach(initSlideshow);
 
   /* ---------- Routing: #home | #cv | #cv/research | #about ---------- */
-  function offset(){ return bar.offsetHeight + 12; }
+  /* Every jump lands with the section's heading the same distance below the
+     top bar, on the CV and About pages alike. */
+  function offset(){ return bar.offsetHeight + 28; }
 
   function scrollToSection(id, smooth){
     var el = document.getElementById(id);
     if(!el) return;
-    var y = el.getBoundingClientRect().top + window.pageYOffset - offset();
+    var target = el.querySelector("h2") || el;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - offset();
     window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
   }
 
@@ -1929,6 +1933,12 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   }
 
   window.addEventListener("hashchange", render);
+  /* Opening a link straight to a section: line it up again once fonts and
+     images have settled, since they can shift the page after the first jump. */
+  window.addEventListener("load", function(){
+    var sec = (location.hash || "").slice(1).split("/")[1];
+    if (sec && window.pageYOffset > 0) scrollToSection(sec, false);
+  });
 
   /* Re-clicking the current section link should still scroll */
   document.querySelectorAll('a[href^="#cv/"], a[href^="#about/"]').forEach(function(a){
@@ -2375,6 +2385,18 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
     raf = requestAnimationFrame(loop);
   }
   function kick(){ last = 0; if (!raf) raf = requestAnimationFrame(loop); }
+
+  /* Arriving through the "About me" menu link starts the loop from Sendai */
+  function fromStart(){
+    if (calm) return;
+    still = false; clock = 0;
+    if (paused){ paused = false; setBtn(); }
+    load(); frame(); kick();
+  }
+  window.addEventListener("hashchange", function(){ if (location.hash === "#about/hello") fromStart(); });
+  document.querySelectorAll('a[href="#about/hello"]').forEach(function(a){
+    a.addEventListener("click", function(){ if (location.hash === "#about/hello") fromStart(); });
+  });
 
   var still = calm;                          // reduced motion: overview until Play is pressed
   setBtn();
