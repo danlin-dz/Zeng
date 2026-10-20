@@ -528,6 +528,39 @@ img{max-width:100%;display:block}
 }
 
 /* ============================================================
+   HOME — sunset photo behind the masthead
+   The photo is only cropped and scaled, never filtered. One file serves
+   every screen: it already ends halfway down the water.
+   ============================================================ */
+#page-home{
+  background:#B7ABA6 url(images/home-sunset.jpg) no-repeat;
+  background-size:cover;
+  /* Landscape screens: the photo fills the width and the bottom of the
+     screen sits just below the waterline, leaving a thin strip of water.
+     14.95vw = the 212px of photo below that point, at full-width scale. */
+  background-position:left 50% bottom -14.95vw;
+}
+/* Text sits in the sky; the bottom padding keeps it clear of the bridge and
+   hills, which rise 18.7vw above the bottom of the screen. */
+#page-home .hero{
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto auto;
+  align-content:center;row-gap:0;
+  padding-block:clamp(2rem,6vh,4rem) calc(18.7vw + clamp(1.5rem,4vh,3rem));
+}
+#page-home .hero-main{grid-row:1;align-self:auto}
+#page-home .hero-links{grid-row:2;align-self:auto;border-top:0;padding-top:clamp(1.2rem,3vh,1.9rem)}
+
+/* Portrait screens (phones): the whole height shows, from the top of the sky
+   to halfway down the water; the text stacks close together near the top. */
+@media (orientation:portrait){
+  #page-home{background-position:13.7% 0}
+  #page-home .hero{align-content:start;padding-block:13vh 2rem}
+  #page-home .hero-line{margin-top:1rem}
+  #page-home .hero-links{padding-top:1.3rem}
+}
+
+/* ============================================================
    MOTION & PRINT
    ============================================================ */
 @media (prefers-reduced-motion:reduce){
@@ -1464,14 +1497,8 @@ img{max-width:100%;display:block}
             <div class="slide" data-cap="Shanghai, China" data-file="images/photo-bund.jpg">
               <img src="images/photo-bund.jpg" alt="Pudong skyline at night reflected in the Huangpu River" loading="lazy">
             </div>
-            <div class="slide" data-cap="Pokhara, Nepal" data-file="images/photo-pokhara.jpg">
-              <img src="images/photo-pokhara.jpg" alt="Rowing boats on a lake below mist-covered hills" loading="lazy">
-            </div>
             <div class="slide" data-cap="Phuket, Thailand" data-file="images/photo-phuket.jpg">
               <img src="images/photo-phuket.jpg" alt="Figures on a beach against an orange sunset" loading="lazy">
-            </div>
-            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-harbour.jpg">
-              <img src="images/photo-ny-harbour.jpg" alt="Masts and the skyline at sunset across the water" loading="lazy">
             </div>
             <div class="slide" data-cap="Ha Giang, Vietnam" data-file="images/photo-vietnam-buffalo.jpg">
               <img src="images/photo-vietnam-buffalo.jpg" alt="Water buffalo grazing below limestone karst peaks" loading="lazy">
@@ -1479,8 +1506,14 @@ img{max-width:100%;display:block}
             <div class="slide" data-cap="Shanghai, China" data-file="images/photo-yugarden.jpg">
               <img src="images/photo-yugarden.jpg" alt="Illuminated upswept eaves of traditional Chinese architecture at night" loading="lazy">
             </div>
-            <div class="slide" data-cap="Kuala Lumpur, Malaysia" data-file="images/photo-kl.jpg">
-              <img src="images/photo-kl.jpg" alt="Red lanterns strung above a Chinatown street at dusk" loading="lazy">
+            <div class="slide" data-cap="Vancouver, Canada" data-file="images/photo-lake.jpg">
+              <img src="images/photo-lake.jpg" alt="Snow-covered evergreens reflected in a still lake under a pink and lavender sunrise sky" loading="lazy">
+            </div>
+            <div class="slide" data-cap="Pokhara, Nepal" data-file="images/photo-pokhara.jpg">
+              <img src="images/photo-pokhara.jpg" alt="Rowing boats on a lake below mist-covered hills" loading="lazy">
+            </div>
+            <div class="slide" data-cap="New York, USA" data-file="images/photo-ny-harbour.jpg">
+              <img src="images/photo-ny-harbour.jpg" alt="Masts and the skyline at sunset across the water" loading="lazy">
             </div>
           </div>
         </div>
