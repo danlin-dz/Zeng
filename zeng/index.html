@@ -110,7 +110,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   }
 }
 .wordmark{
-  font-family:var(--body);font-weight:600;font-size:1.125rem;
+  font-family:var(--body);font-weight:600;font-size:1rem;
   letter-spacing:.005em;text-decoration:none;
 }
 .nav{display:flex;align-items:center;gap:.35rem}
@@ -208,7 +208,10 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .dl svg{width:14px;height:14px;flex:none}
 
 .cv-body{display:grid;grid-template-columns:196px minmax(0,1fr);gap:clamp(1.6rem,4vw,2.6rem);
-  padding-block:clamp(1.6rem,3.2vw,2.4rem) 4.8rem}
+  padding-block:clamp(1.6rem,3.2vw,2.4rem) clamp(1.25rem,3vw,2.5rem)}
+/* The last section needs no gap of its own: the space to the footer line then
+   matches the About page (52px on a phone, 72px on a laptop). */
+.cv-body .sec:last-child{padding-bottom:0}
 
 /* Sticky section rail with scroll spy */
 .rail{position:sticky;top:calc(var(--bar) + 2.4rem);align-self:start}
@@ -449,6 +452,11 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(244,245,247,.05) 12px 24px);
 }
 .slide--empty img,.slide--empty video{display:none}
+/* Until a clip is actually playing, its first frame (the poster, painted as
+   the slide's background) shows instead, so there is never a blank or grey
+   flash while the video buffers. */
+.slide video.v-wait{opacity:0}
+.slide video{transition:opacity .15s linear}
 
 
 /* Tick rail — one per slide, doubles as the jump control */
@@ -546,7 +554,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   #hello .hobby-copy a{display:inline;padding-block:0}
   .menu a{padding-block:.85rem}
   .rail a{padding-block:.6rem}
-  .wordmark{font-size:1.0625rem;padding-block:.5rem}
+  .wordmark{font-size:.9rem;padding-block:.5rem}
   .foot-mail{display:inline-block;padding-block:.35rem}
   .slink,.mailto{display:inline-block;padding-block:.5rem}
   .nav-link{padding:.85rem .5rem;font-size:.68rem;letter-spacing:.1em}
@@ -605,7 +613,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   #page-home .hero-links{padding-top:1.6rem}
 }
 
-@media (max-width:360px){ .wordmark{font-size:.9rem} .venues .tag{white-space:normal} }
+@media (max-width:360px){ .wordmark{font-size:.85rem} .venues .tag{white-space:normal} }
 
 /* ============================================================
    MOTION & PRINT
@@ -1736,6 +1744,39 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
         if (calm){ vid.setAttribute("controls",""); vid.removeAttribute("loop"); }
       }
     });
+
+    /* Videos: show the first frame straight away and start buffering well
+       before the reader arrives, so a clip is ready the moment it is seen. */
+    var vids = [];
+    slides.forEach(function(s){
+      var v = s.querySelector("video");
+      if (!v) return;
+      vids.push(v);
+      var poster = v.getAttribute("poster");
+      if (poster){
+        s.style.background = "#15171A url('" + poster + "') center / cover no-repeat";
+        if (!calm){
+          v.classList.add("v-wait");
+          v.addEventListener("playing", function(){ v.classList.remove("v-wait"); });
+          v.addEventListener("timeupdate", function(){ if (v.currentTime > 0) v.classList.remove("v-wait"); });
+        }
+      }
+    });
+    function warm(){
+      vids.forEach(function(v){
+        if (v.getAttribute("preload") !== "auto"){
+          v.setAttribute("preload", "auto");
+          if (v.paused && v.currentTime === 0) v.load();
+        }
+      });
+    }
+    if (vids.length){
+      if ("IntersectionObserver" in window){
+        new IntersectionObserver(function(es){
+          if (es[0].isIntersecting) warm();
+        }, { rootMargin: "1600px 0px" }).observe(show);
+      } else warm();
+    }
 
     slides.forEach(function(s, i){
       var b = document.createElement("button");
