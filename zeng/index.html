@@ -9,6 +9,7 @@
 <meta name="description" content="Danlin Zeng, fourth-year medical student at the University of British Columbia. Curriculum vitae, research, and outreach.">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
 <!-- How the link renders when pasted into email, Slack, or a message. -->
@@ -2179,6 +2180,22 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
     ctx.fillStyle = C.cobalt; ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI*2); ctx.fill();
     ctx.restore();
   }
+  /* A small airliner seen from above, nose along +x, in the pin's cobalt
+     with a paper outline so it reads over land and water alike. */
+  var PLANE = [[1,0],[.93,.07],[.78,.1],[.2,.1],[-.12,.86],[-.3,.86],[-.13,.1],[-.62,.08],[-.82,.36],[-.94,.36],[-.84,.06],[-.96,0]];
+  function plane(x, y, ang, alpha){
+    if (alpha <= 0) return;
+    var s = W < 480 ? 9 : 11;
+    ctx.save(); ctx.globalAlpha = alpha;
+    ctx.translate(x, y); ctx.rotate(ang);
+    ctx.beginPath();
+    PLANE.forEach(function(q, j){ j ? ctx.lineTo(q[0]*s, q[1]*s) : ctx.moveTo(q[0]*s, q[1]*s); });
+    for (var j = PLANE.length - 2; j > 0; j--) ctx.lineTo(PLANE[j][0]*s, -PLANE[j][1]*s);
+    ctx.closePath();
+    ctx.lineJoin = "round"; ctx.lineWidth = 2.5; ctx.strokeStyle = C.paper; ctx.stroke();
+    ctx.fillStyle = C.cobalt; ctx.fill();
+    ctx.restore();
+  }
   function label(text, x, y, alpha, side, small, sub){
     ctx.save(); ctx.globalAlpha = alpha;
     ctx.font = "600 " + (small ? (W < 480 ? 11 : 12.5) : (W < 480 ? 13 : 14.5)) + "px " + font;
@@ -2255,6 +2272,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
     var fade = returning ? 1 - clamp01(u * 1.6) : 1;     // everything clears on the way home
 
     /* Trail */
+    var head = null;
     ctx.save();
     ctx.strokeStyle = C.cobalt; ctx.lineWidth = 1.6; ctx.setLineDash([5, 5]);
     ctx.lineCap = "round"; ctx.globalAlpha = .75 * fade;
@@ -2271,8 +2289,18 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
         ctx.lineTo(sx(a[0] + (b[0]-a[0])*r), sy(a[1] + (b[1]-a[1])*r));
       }
       ctx.stroke();
+      /* the plane rides the head of the line being drawn now */
+      if (g === s && !returning && f > 0){
+        var ia = Math.min(whole, pts.length - 2), ra = n - ia;
+        var A = pts[ia], B = pts[ia + 1];
+        head = { x: sx(A[0] + (B[0]-A[0])*ra), y: sy(A[1] + (B[1]-A[1])*ra),
+                 ang: Math.atan2(sy(B[1]) - sy(A[1]), sx(B[0]) - sx(A[0])),
+                 /* fades in on take-off; gone a beat before the pin starts to drop */
+                 a: clamp01(f / .06) * clamp01((g.t0 + g.d - .03 - t) / .15) };
+      }
     });
     ctx.restore();
+    if (head) plane(head.x, head.y, head.ang, head.a);
 
     /* Earlier stops shrink to dots */
     for (var i = 0; i < current; i++) dot(sx(STOPS[i].x), sy(STOPS[i].y), fade);
