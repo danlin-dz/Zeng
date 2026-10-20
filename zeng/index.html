@@ -92,6 +92,8 @@ img{max-width:100%;display:block}
 body:has(#page-home[data-active="true"]) .bar{
   background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent;
 }
+/* CV and About: a slightly thinner top bar (Home keeps its full height) */
+body:not(:has(#page-home[data-active="true"])){--bar:54px}
 /* Desktop: the name and tabs line up with the page content column */
 @media (min-width:621px){
   .bar{
@@ -108,7 +110,7 @@ body:has(#page-home[data-active="true"]) .bar{
   }
 }
 .wordmark{
-  font-family:var(--body);font-weight:600;font-size:1rem;
+  font-family:var(--body);font-weight:500;font-size:1rem;
   letter-spacing:.005em;text-decoration:none;
 }
 .nav{display:flex;align-items:center;gap:.35rem}
@@ -192,7 +194,7 @@ body:has(#page-home[data-active="true"]) .bar{
 /* ============================================================
    CV
    ============================================================ */
-.cv-head{padding-block:clamp(2.4rem,5.6vw,4.4rem) 1.6rem;border-bottom:1px solid var(--rule)}
+.cv-head{padding-block:clamp(2rem,4.5vw,3.25rem) 1.6rem;border-bottom:1px solid var(--rule)}
 .cv-title{font-size:clamp(1.92rem,4.8vw,3.2rem);font-weight:700;letter-spacing:-0.04em}
 .cv-actions{margin:.88rem 0 0}
 .print-head{display:none}
@@ -382,7 +384,9 @@ body:has(#page-home[data-active="true"]) .bar{
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
 .mail-inline,.nowrap{white-space:nowrap}
-.hello-block{margin-top:clamp(2rem,5vw,3rem)}
+/* "Say hello" sits midway between the map caption and the footer line */
+#hello{--hm:clamp(3.25rem,6.4vw,4.5rem);padding-bottom:calc(clamp(2.5rem,5vw,4rem) - (var(--hm) - clamp(2rem,5vw,3rem)))}
+.hello-block{margin-top:var(--hm)}
 .mail-inline .mail-ico{margin-right:.35em}
 .mailto{
   font-size:1.05rem;color:var(--ink);text-decoration:none;
@@ -1607,7 +1611,7 @@ body:has(#page-home[data-active="true"]) .bar{
     <section class="hobby" id="hello">
       <div class="hobby-text">
         <h2 class="hobby-title hobby-title--lg">About me</h2>
-        <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
+        <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high&nbsp;school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
       </div>
 
       <figure class="journey" id="journey">
