@@ -271,7 +271,11 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .venues li{font-size:.93rem;color:var(--slate);padding:.16rem 0;line-height:1.5}
 .venues .tag{margin-left:.35rem;white-space:nowrap}
 .venues em{font-style:italic;color:var(--ink)}
-.venues a.doi{font-size:inherit}
+.venues a.doi{font-size:inherit;border-bottom:0;word-break:normal;display:inline}
+.venues a.doi em{color:var(--cobalt)}
+.venues a.doi::after{content:"\00a0\2197";font-style:normal;font-size:.9em;color:var(--cobalt)}
+.venues a.doi:hover em{text-decoration:underline;text-underline-offset:2px}
+@media print{ .venues a.doi::after{content:none} .venues a.doi em{color:inherit} }
 .cite-tail{margin:.36rem 0 0;display:flex;flex-wrap:wrap;gap:.32rem .76rem;align-items:baseline}
 .doi{
   font-family:var(--body);font-size:.82rem;letter-spacing:0;color:var(--cobalt);
