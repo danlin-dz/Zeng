@@ -360,7 +360,7 @@ img{max-width:100%;display:block}
 .hobby-copy{margin:0;max-width:72ch;color:var(--ink);text-wrap:pretty}
 .hobby-copy a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .hobby-copy a:hover{border-bottom-color:var(--cobalt)}
-.mail-inline{white-space:nowrap}
+.mail-inline,.nowrap{white-space:nowrap}
 .mail-inline .mail-ico{margin-right:.35em}
 .mailto{
   font-size:1.05rem;color:var(--ink);text-decoration:none;
@@ -505,6 +505,12 @@ img{max-width:100%;display:block}
   .rail a{border-left:0;border-bottom:2px solid var(--rule);padding:.35rem .1rem}
   .rail a[data-here="true"]{border-bottom-color:var(--fluor)}
   .hobby-grid{grid-template-columns:1fr}
+  /* About, stacked: birthplace paragraph, then the map, then "Say hello" */
+  #hello{display:flex;flex-direction:column}
+  #hello .hobby-grid{display:contents}
+  #hello .hobby-grid>.hobby-text:nth-child(2){order:1}
+  #hello .journey{order:2}
+  #hello .hobby-grid>.hobby-text:nth-child(1){order:3;margin-top:clamp(2rem,5vw,3rem)}
   .hobby--flip .hobby-text{order:0}
   .shows{grid-template-columns:1fr}
   .stage{aspect-ratio:4/3}
@@ -514,6 +520,7 @@ img{max-width:100%;display:block}
   body{font-size:16px}
   /* thumb-sized hit areas: these links are only ~23px tall otherwise */
   .doi,.row-link,.hobby-copy a{display:inline-block;padding-block:.45rem}
+  #hello .hobby-copy a{display:inline;padding-block:0}
   .menu a{padding-block:.85rem}
   .rail a{padding-block:.6rem}
   .wordmark{font-size:.8rem;padding-block:.5rem}
@@ -1577,7 +1584,7 @@ img{max-width:100%;display:block}
       <div class="hobby-grid">
         <div class="hobby-text">
           <h2 class="hobby-title hobby-title--lg">Say hello</h2>
-          <p class="hobby-copy"><a class="mail-inline" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a> to chat about my <a href="#cv/research">research</a>, <a href="#cv/outreach">community work</a>, or life.</p>
+          <p class="hobby-copy"><a class="mail-inline" href="mailto:danlinz@student.ubc.ca"><svg class="mail-ico" viewBox="0 0 20 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1" y="1" width="18" height="14" rx="2.5"/><path d="M1.8 3.4L10 9.2l8.2-5.8"/></svg>Email me</a> to chat about my <span class="nowrap"><a href="#cv/research">research</a>,</span> <span class="nowrap"><a href="#cv/outreach">community work</a>,</span> or life.</p>
         </div>
         <div class="hobby-text">
           <p class="hobby-copy">I&nbsp;was born in Sendai, Japan and grew up in Shanghai, China, then moved to Vancouver for high school. University took me east &mdash; an undergraduate degree in Toronto and a master&rsquo;s in Montr&eacute;al &mdash; before I&nbsp;came back to Vancouver for medicine.</p>
