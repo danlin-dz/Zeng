@@ -212,6 +212,8 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 /* The last section needs no gap of its own: the space to the footer line then
    matches the About page (52px on a phone, 72px on a laptop). */
 .cv-body .sec:last-child{padding-bottom:0}
+/* no rule under the final entry: the footer line follows directly */
+.cv-body .sec:last-child .sub:last-child .row:last-child,.cv-body .sec:last-child > .rows > .row:last-child{border-bottom:0}
 
 /* Sticky section rail with scroll spy */
 .rail{position:sticky;top:calc(var(--bar) + 2.4rem);align-self:start}
@@ -510,7 +512,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .foot-name{font-size:1.05rem;font-weight:700;color:var(--ink)}
 .foot-creds{
   margin-top:.85rem;display:grid;gap:.28rem;
-  font-size:.82rem;color:var(--slate);
+  font-size:.82rem;color:#33383C;
 }
 .mail-ico{
   width:1em;height:.82em;display:inline-block;vertical-align:-.06em;
