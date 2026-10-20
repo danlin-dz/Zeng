@@ -198,6 +198,11 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .cv-head{padding-block:clamp(2rem,4.5vw,3.25rem) 1.6rem;border-bottom:1px solid var(--rule)}
 .cv-title{font-size:clamp(1.92rem,4.8vw,3.2rem);font-weight:700;letter-spacing:-0.04em}
 .cv-actions{margin:.88rem 0 0}
+/* Laptop: download button sits on the title's baseline, right-aligned */
+@media screen and (min-width:621px){
+  .cv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem}
+  .cv-actions{margin:0 0 .35rem;flex:none}
+}
 .print-head{display:none}
 .dl{
   display:inline-flex;align-items:center;gap:.5rem;
