@@ -271,6 +271,10 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .venues li{font-size:.93rem;color:var(--slate);padding:.16rem 0;line-height:1.5}
 .venues .tag{margin-left:.35rem;white-space:nowrap}
 .venues em{font-style:italic;color:var(--ink)}
+.awlink{color:inherit;text-decoration:none}
+.awlink::after{content:"\00a0\2197";font-family:var(--body);font-weight:500;font-size:.8em}
+.awlink:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+@media print{ .awlink::after{content:none} }
 .xlink{color:var(--cobalt);text-decoration:none}
 .xlink::after{content:"\00a0\2197";font-size:.9em}
 .xlink:hover{text-decoration:underline;text-underline-offset:2px}
@@ -824,16 +828,16 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
             <li class="row">
               <div class="row-when">2026</div>
               <div>
-                <div class="row-what">Conquer Cancer Merit Award</div>
-                <p class="row-where"><a class="xlink" href="https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/2192/Merit+Award+Recipients.pdf?v=1783043178000" target="_blank" rel="noopener" aria-label="ASCO Annual Meeting merit award recipients list (PDF)">American Society of Clinical Oncology (ASCO) Annual Meeting</a></p>
+                <div class="row-what"><a class="awlink" href="https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/2192/Merit+Award+Recipients.pdf?v=1783043178000" target="_blank" rel="noopener" aria-label="ASCO Annual Meeting merit award recipients list (PDF)">Conquer Cancer Merit Award</a></div>
+                <p class="row-where">American Society of Clinical Oncology (ASCO) Annual Meeting</p>
                 <p class="row-note">One of 141 merit awards among over 8,500 abstracts submitted worldwide</p>
               </div>
             </li>
             <li class="row">
               <div class="row-when">2026</div>
               <div>
-                <div class="row-what">Conquer Cancer Merit Award</div>
-                <p class="row-where"><a class="xlink" href="https://cdn.bfldr.com/KOIHB2Q3/at/7br6fk5sgnb79qt5vtngb/2026_QCS_Merit_Awards2.pdf" target="_blank" rel="noopener" aria-label="ASCO Quality Care Symposium merit award recipients list (PDF)">ASCO Quality Care Symposium</a></p>
+                <div class="row-what"><a class="awlink" href="https://cdn.bfldr.com/KOIHB2Q3/at/7br6fk5sgnb79qt5vtngb/2026_QCS_Merit_Awards2.pdf" target="_blank" rel="noopener" aria-label="ASCO Quality Care Symposium merit award recipients list (PDF)">Conquer Cancer Merit Award</a></div>
+                <p class="row-where">ASCO Quality Care Symposium</p>
                 <p class="row-note">One of 48 top-ranking abstracts selected among over 900 abstracts</p>
               </div>
             </li>
