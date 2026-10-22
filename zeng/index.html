@@ -334,7 +334,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
 .embed iframe{width:100%;height:100%;border:0;display:block}
 .row-link{color:var(--cobalt);text-decoration:none;border-bottom:1px solid rgba(44,74,94,.3)}
 .row-link:hover{border-bottom-color:var(--cobalt)}
-.row-where{color:var(--slate);margin:.15rem 0 0;font-size:.95rem;line-height:1.35}
+.row-where{color:var(--slate);margin:-.1rem 0 0;font-size:.95rem;line-height:1.35}
 .row-where + .row-note{margin-top:.3rem}
 /* Supervisor names: a step smaller than the institution line */
 .row-sup{font-size:.86rem}
@@ -584,11 +584,11 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
   .row{display:flex;flex-direction:column}
   .row-what{order:1}
   .row-where{order:2}
-  .row-when{order:3;text-align:left;white-space:normal;padding-top:.15rem;font-size:.86rem;line-height:1.35}
+  .row-when{order:3;text-align:left;white-space:normal;padding-top:0;font-size:.86rem;line-height:1.35}
   .row-note,.row .embed{order:4}
   #skills .row-when{order:0;padding-top:0}
   .row-where .sep{display:none}
-  .row-where .row-sup{display:block;font-size:.86rem;padding-top:.1rem}
+  .row-where .row-sup{display:block;font-size:.86rem;padding-top:0}
   #skills .row > div:not(.row-when){order:1}
   .cites > li{grid-template-columns:1.9rem minmax(0,1fr);gap:.6rem}
 }
@@ -877,7 +877,10 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
               <ol class="cites" style="counter-reset:cite 0">
               <li>
                 <div>
-                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bondok M, Tao B, Al-Ghoul A, Pintwala R. Ocular adverse events associated with taxane chemotherapy: a disproportionality analysis of pharmacovigilance data. <em>Journal of Ocular Pharmacology and Therapeutics.</em> Accepted for publication Sept 29, 2026.</p>
+                  <p class="cite-text"><span class="cite-you">Zeng D</span>, Bondok M, Tao B, Al-Ghoul A, Pintwala R. Ocular adverse events associated with docetaxel and paclitaxel: a pharmacovigilance disproportionality analysis. <em>Journal of Ocular Pharmacology and Therapeutics.</em> Published online Oct 22, 2026.</p>
+                  <p class="cite-tail">
+                    <a class="doi" href="https://doi.org/10.1177/10807683261497923" target="_blank" rel="noopener">doi.org/10.1177/10807683261497923</a>
+                  </p>
                 </div>
               </li>
               <li>
@@ -895,7 +898,10 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
               </li>
               <li>
                 <div>
-                  <p class="cite-text">Yang K, Li M, Skinner T, <span class="cite-you">Zeng D</span>, Sosa G, Han JY, Jafarian F. A dietary approach to skin cancer prevention in solid organ transplant recipients: a perspective. <em>Frontiers in Transplantation.</em> Accepted for publication Sept 24, 2026.</p>
+                  <p class="cite-text">Yang K, Li M, Skinner T, <span class="cite-you">Zeng D</span>, Sosa G, Han JY, Jafarian F. A dietary approach to skin cancer prevention in solid organ transplant recipients: a perspective. <em>Frontiers in Transplantation.</em> Published online Oct 21, 2026.</p>
+                  <p class="cite-tail">
+                    <a class="doi" href="https://doi.org/10.3389/frtra.2026.1949295" target="_blank" rel="noopener">doi.org/10.3389/frtra.2026.1949295</a>
+                  </p>
                 </div>
               </li>
               <li>
@@ -1598,7 +1604,7 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
     <section class="hobby" id="running">
       <div class="hobby-head">
         <h2 class="hobby-title">Running</h2>
-        <p class="hobby-copy">I&nbsp;started running in 2023, my first year of medical school, because of my classmates. I&nbsp;set consistent time goals and challenged myself to run even on the days I&nbsp;felt unmotivated.</p>
+        <p class="hobby-copy">I&nbsp;started running in my first year of medical school because of my classmates. I&nbsp;set consistent time goals and challenged myself to run even on the days I&nbsp;felt unmotivated.</p>
         <p class="hobby-copy" style="margin-top:.9rem">Running is honest about whether the work went in.</p>
       </div>
 
@@ -1921,7 +1927,12 @@ body:not(:has(#page-home[data-active="true"])){--bar:54px}
     var el = document.getElementById(id);
     if(!el) return;
     var target = el.querySelector("h2") || el;
-    var y = target.getBoundingClientRect().top + window.pageYOffset - offset();
+    var top = target.getBoundingClientRect().top;
+    // Side-by-side layouts (photos beside the text on wider screens): land
+    // above whichever starts higher, so the photos are never cut off.
+    var media = el.querySelector(".slideshow, figure, .stage");
+    if (media) top = Math.min(top, media.getBoundingClientRect().top);
+    var y = top + window.pageYOffset - offset();
     window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
   }
 
